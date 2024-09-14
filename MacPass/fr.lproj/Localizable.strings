@@ -56,13 +56,13 @@
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "Voir les préférences de plugins...";
 
 /* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
-"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Certains plugins ont été désactivé par ce qu'il ne sont pas compatibles avec cette version de MacPass. Ouvrez le menu des plugins pour plus de détails.";
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "Certains plugins ont été désactivés parce qu'ils ne sont pas compatibles avec cette version de MacPass. Ouvrez le menu des plugins pour plus de détails.";
 
 /* Message text of the alert displayed when plugins where disabled due to incompatibilty */
 "ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "Plugins incompatibles détectés.";
 
 /* Alert informative text when plugins or their settings change and require a restart */
-"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Les changements concernant les plugins ainsi que leur configuration globale ne prendront effet qu'après avoir relance MacPass. Relancer MacPass maintenant?";
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "Les changements concernant les plugins ainsi que leur configuration globale ne prendront effet qu'après avoir relancé MacPass. Relancer MacPass maintenant ?";
 
 /* Alert informative text to ask the user if he really want to uninstall the plugin */
 "ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "Le plugin sera déplacé vers la corbeille.";
@@ -74,13 +74,13 @@
 "ALERT_MERGE_CONTINUE" = "Fusionner les fichiers !";
 
 /* Informative text displayed when merging KDB files */
-"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "Les bases de données KDB ne contiennent pas assez d'informations pour être fusionnées efficacement. Les entrées seront fusionnées et aucune donnée ne sera perdu. Les groupes ne pouvant correspondre que pas leurs noms, cela risque de provoquer des changements non désirés. Les entrées déplacées peuvent se retrouver dans leur groupe précédant, ou les groupes renommés risquent de ne pas être fusionnés. Les entrées supprimées risquent de réapparaître car les informations concernant les objets supprimés ne sont pas stockées. Êtes-vous sûr de vouloir continuer?";
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "Les bases de données KDB ne contiennent pas assez d'informations pour être fusionnées efficacement. Les entrées seront fusionnées et aucune donnée ne sera perdu. Les groupes ne pouvant correspondre que pas leurs noms, cela risque de provoquer des changements non désirés. Les entrées déplacées peuvent se retrouver dans leur groupe précédant, ou les groupes renommés risquent de ne pas être fusionnés. Les entrées supprimées risquent de réapparaître car les informations concernant les objets supprimés ne sont pas stockées. Êtes-vous sûr de vouloir continuer ?";
 
 /* Alert message warning user about KDB file merge */
 "ALERT_MERGE_KDB_FILE_MESSAGE" = "Vous allez fusionner une base de données KDB";
 
 /* Alert message text when plugins or their settings change and require a restart */
-"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Certaines configurations de plugins ont changé. Veuillez relancer l'application.";
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "Certaines configurations de plugins ont changées. Veuillez relancer l'application.";
 
 /* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
 "ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "Voulez-vous vraiment supprimer le plugin %@ ?";
@@ -89,14 +89,14 @@
 "ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "Les mises à jour concernant la version de %@ sont désactivées !";
 
 /* Message text for disabled updates alert! */
-"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Les mises à jour sont désactivé !";
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "Les mises à jour sont désactivées !";
 
 /* Attachments column title (shows counts)
    Menu item to toggle display of attachment count column in entry table */
 "ATTACHMENTS" = "Fichiers joints";
 
 /* Sucessfully merged external changes */
-"AUTO_MERGE_NOTIFICATION_TEXT" = "La fusion automatique est un succès !";
+"AUTO_MERGE_NOTIFICATION_TEXT" = "Modifications externes fusionnées avec succès !";
 
 /* Menu item for automatic trash creation */
 "AUTOCREATE_TRASH_FOLDER" = "Créer automatiquement";
@@ -379,6 +379,15 @@
 /* The master key was changed by an external program! */
 "EXTERN_CHANGE_OF_MASTERKEY" = "La clé principale a été changée par un programme externe";
 
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "Téléchargement direct";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
 /* External file change strategy option: ask what to do */
 "FILE_CHANGE_STRATEGY_ASK" = "Demander";
 
@@ -396,7 +405,7 @@
 "FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "Le fichier chargé n'est pas le même que celui sur le disque. Comment voulez-vous continuer ?";
 
 /* Message displayed when an open file was changed from another application */
-"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Le fichier de la base de données a été modifié !";
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "Le fichier de la base de données a été modifiée !";
 
 /* Error while reopening last known documents */
 "FILE_OPEN_ERROR" = "Erreur lors de l'ouverture du fichier";
@@ -458,7 +467,7 @@
 "MODIFIED" = "Modifié";
 
 /* Action name when an entry was moved */
-"MOVE_ENTRY" = "Déplacer entrée";
+"MOVE_ENTRY" = "Déplacer une entrée";
 
 /* Menu displayed as popup selection for search options when multiple items are selected */
 "MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "Plusieurs...";
@@ -469,7 +478,7 @@
 /* Action name for a newly created entry
    Menu item to create a new entry
    Toolbar item new entry */
-"NEW_ENTRY" = "Ajouter entrée";
+"NEW_ENTRY" = "Ajouter une entrée";
 
 /* Submenu to add an entry via template */
 "NEW_ENTRY_WITH_TEMPLATE_%@" = "Créer l'entrée depuis le modèle %@";
@@ -761,10 +770,10 @@
 "TOUCHBAR_UNLOCK_DATABASE" = "Déverrouiller la base de données";
 
 /* Move Entry to Trash */
-"TRASH_ENTRY" = "Effacer entrée";
+"TRASH_ENTRY" = "Effacer l'entrée";
 
 /* Move Group to Trash */
-"TRASH_GROUP" = "Effacer groupe";
+"TRASH_GROUP" = "Effacer le groupe";
 
 /* Uninstall plugin */
 "UNINSTALL" = "Désinstaller le plugin";
@@ -809,7 +818,7 @@
 "WARNING_NO_PASSWORD_OR_KEYFILE" = "Aucun mot de passe ou clé !";
 
 /* Informative Text displayed when clearing the Trash */
-"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Le/les fichier(s) dans la corbeille vont être supprimés !";
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "Le(s) fichier(s) dans la corbeille vont être supprimés !";
 
 /* Message text for the alert displayed when deleting a node */
 "WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "Suppression des éléments dans la corbeille";

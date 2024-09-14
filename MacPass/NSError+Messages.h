@@ -29,7 +29,8 @@ typedef NS_ENUM(NSInteger, MPErrorCodes) {
   MPErrorNoPasswordOrKeyFile = 10000,
   MPErrorInvalidPlugin,
   MPErrorAutotypeIsMissingAccessibiltyPermissions,
-  MPErrorAutotypeIsMissingScreenRecordingPermissions
+  MPErrorAutotypeIsMissingScreenRecordingPermissions,
+  MPErrorTouchIdUnsupportedKeyForEncrpytion,
 };
 
 @interface NSError (Messages)

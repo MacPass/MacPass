@@ -315,11 +315,11 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
   item.tag = NSSearchFieldRecentsTitleMenuItemTag;
   [menu addItem:item];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"Recents" action:NULL keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldRecentsMenuItemTag;
   [menu addItem:item];
   
-  item = [[NSMenuItem alloc] initWithTitle:@"NoEntries" action:NULL keyEquivalent:@""];
+  item = [[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""];
   item.tag = NSSearchFieldNoRecentsMenuItemTag;
   [menu addItem:item];
   

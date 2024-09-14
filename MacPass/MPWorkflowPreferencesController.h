@@ -23,7 +23,12 @@
 #import "MPViewController.h"
 #import "MPPreferencesTab.h"
 
+@class DDHotKeyTextField;
+
 @interface MPWorkflowPreferencesController : MPViewController <MPPreferencesTab>
+
+@property (strong) IBOutlet DDHotKeyTextField *hotkeyTextField;
+@property (strong) IBOutlet NSTextField *hotkeyWarningTextField;
 
 
 

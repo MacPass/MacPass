@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger, MPPasswordEditKeyError) {
 - (IBAction)generateKey:(id)sender {
   MPDocument *document = self.document;
   KPKFileVersion fileVersion = document.tree.minimumVersion;
-  NSArray *fileTypes = @[];
+  NSArray *fileTypes;
   KPKKeyFileType keyFileType;
   
   if(fileVersion.format == KPKDatabaseFormatUnknown) {

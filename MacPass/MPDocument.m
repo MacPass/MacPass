@@ -170,7 +170,7 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
                               NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION", ""),
                               NSLocalizedRecoveryOptionsErrorKey : @[ NSLocalizedString(@"CHANGE_PASSWORD_WITH_DOTS", ""), NSLocalizedString(@"CANCEL", "") ],
                               NSRecoveryAttempterErrorKey : recovery
-                              };
+  };
   if(outError != NULL) {
     *outError = [NSError errorWithDomain:MPDefaultErrorDomain code:MPErrorNoPasswordOrKeyFile userInfo:userInfo];
   }
@@ -398,7 +398,6 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   NSError *error;
   KPKTree *otherTree;
   
-  
   if(key) {
     otherTree = [[KPKTree alloc] initWithContentsOfUrl:url key:key error:&error];
   }
@@ -422,18 +421,14 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
       MPPasswordInputController *passwordInputController = [[MPPasswordInputController alloc] init];
       [passwordInputController requestPasswordWithMessage:NSLocalizedString(@"EXTERN_CHANGE_OF_MASTERKEY", @"The master key was changed by an external program!")
                                               cancelLabel:NSLocalizedString(@"ABORT_MERGE_KEEP_MINE", @"Button label to abort a merge on a file with changed master key!")
-                                        completionHandler:^BOOL(NSString *password, NSURL *keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
+                                        completionHandler:^BOOL(KPKCompositeKey *compositeKey, NSURL* keyURL, BOOL didCancel, NSError *__autoreleasing *error) {
                                           [self.windowForSheet endSheet:sheet returnCode:(didCancel ? NSModalResponseCancel : NSModalResponseOK)];
                                           if(!didCancel) {
-                                            NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
-                                            KPKCompositeKey *compositeKey = [[KPKCompositeKey alloc] init];
-                                            [compositeKey addKey:[KPKKey keyWithPassword:password]];
-                                            [compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
-                                            [self _mergeWithContentsFromURL:url key:compositeKey options:options];
-                                          }
-                                          // just return yes regardless since we will display the sheet again if needed!
-                                          return YES;
-                                        }];
+          [self _mergeWithContentsFromURL:url key:compositeKey options:options];
+        }
+        // just return yes regardless since we will display the sheet again if needed!
+        return YES;
+      }];
       sheet.contentViewController = passwordInputController;
       [self.windowForSheet beginSheet:sheet completionHandler:^(NSModalResponse returnCode) { /* nothing to do, rest is done in other handler! */ }];
     }
@@ -494,13 +489,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 
-- (BOOL)unlockWithPassword:(NSString *)password keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error {
+- (BOOL)unlockWithPassword:(KPKCompositeKey *)compositeKey keyFileURL:(NSURL *)keyFileURL error:(NSError *__autoreleasing*)error{
   // TODO: Make this API asynchronous
-  NSData *keyFileData = keyFileURL ? [NSData dataWithContentsOfURL:keyFileURL] : nil;
-  
-  self.compositeKey = [[KPKCompositeKey alloc] init];
-  [self.compositeKey addKey:[KPKKey keyWithPassword:password]];
-  [self.compositeKey addKey:[KPKKey keyWithKeyFileData:keyFileData]];
+  self.compositeKey = compositeKey;
   self.tree = [[KPKTree alloc] initWithData:self.encryptedData key:self.compositeKey error:error];
   
   BOOL isUnlocked = (nil != self.tree);
@@ -714,9 +705,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   
   newGroup.title = NSLocalizedString(@"DEFAULT_GROUP_NAME", @"Title for a newly created group");
   newGroup.iconId = MPIconFolder;
-
+  
   KPK_SCOPED_DISABLE_UNDO_END;
-
+  
   [newGroup addToGroup:parent];
   [newGroup.undoManager setActionName:NSLocalizedString(@"NEW_GROUP", "Action name for a newly created group")];
   [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddGroupNotification
@@ -851,9 +842,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   }
   [self.undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"DUPLICATE_ENTRIES_ACTION_NAME", @"Action name for duplicating entries"), self.selectedEntries.count]];
   if(lastDuplicate) {
-  [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
-                                                    object:self
-                                                  userInfo:@{ MPDocumentEntryKey: lastDuplicate }];
+    [NSNotificationCenter.defaultCenter postNotificationName:MPDocumentDidAddEntryNotification
+                                                      object:self
+                                                    userInfo:@{ MPDocumentEntryKey: lastDuplicate }];
   }
 }
   
@@ -890,6 +881,10 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   KPKGroup *targetGroup = targetGroups.count == 1 ? targetGroups.firstObject : nil;
   
   if(self.encrypted || self.isReadOnly) {
+    if(anItem.action == @selector(revertDocumentToSaved:) ||
+       anItem.action == @selector(browseDocumentVersions:)) {
+      return YES;
+    }
     return NO;
   }
   
@@ -965,11 +960,17 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
 }
 
 - (void)_storeKeyURL:(NSURL *)keyURL {
+  if(self.isDraft) {
+    // we cannot store key files for draft documents
+    return;
+  }
   NSMutableDictionary *keysForFiles = [[NSUserDefaults.standardUserDefaults dictionaryForKey:kMPSettingsKeyRememeberdKeysForDatabases] mutableCopy];
   MPAppDelegate *delegate = (MPAppDelegate *)[NSApp delegate];
   if(!delegate.isAllowedToStoreKeyFile || nil == keyURL) {
     /* user has removed the keyfile or we should not safe it so remove it */
-    [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
+    if(self.fileURL) {
+      [keysForFiles removeObjectForKey:self.fileURL.path.sha1HexDigest];
+    }
   }
   else if([self.compositeKey hasKeyOfClass:KPKPasswordKey.class] && [self.compositeKey hasKeyOfClass:KPKFileKey.class]) {
     if(nil == keysForFiles) {

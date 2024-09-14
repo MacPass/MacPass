@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,7 +37,7 @@
                     </columns>
                     <gridCells>
                         <gridCell row="xmM-rD-5oB" column="7Ct-m6-g6y" id="am5-3Y-3j8">
-                            <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JAh-R7-pLA">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAh-R7-pLA">
                                 <rect key="frame" x="-2" y="188" width="102" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Database name:" id="03Y-Lj-rRN">
                                     <font key="font" metaFont="system"/>
@@ -47,7 +47,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="xmM-rD-5oB" column="eQs-KV-hxL" id="IfW-cA-EoE">
-                            <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ufI-vz-Iga">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufI-vz-Iga">
                                 <rect key="frame" x="106" y="188" width="280" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="FXj-7O-RqC"/>
@@ -60,7 +60,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="EPS-PJ-wZn" column="7Ct-m6-g6y" id="uqN-Dk-NnR">
-                            <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WIS-Jx-S9I">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIS-Jx-S9I">
                                 <rect key="frame" x="22" y="164" width="78" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Description:" id="p9U-Kw-bI5">
                                     <font key="font" metaFont="system"/>
@@ -70,7 +70,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="EPS-PJ-wZn" column="eQs-KV-hxL" id="Gb7-AY-QQA">
-                            <scrollView key="contentView" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nST-Dm-Qr7">
+                            <scrollView key="contentView" ambiguous="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nST-Dm-Qr7">
                                 <rect key="frame" x="106" y="80" width="280" height="100"/>
                                 <clipView key="contentView" drawsBackground="NO" id="Is2-5k-gGr">
                                     <rect key="frame" x="1" y="1" width="278" height="98"/>
@@ -102,7 +102,7 @@
                             </scrollView>
                         </gridCell>
                         <gridCell row="6vV-rV-ITV" column="7Ct-m6-g6y" id="EZb-Cx-iTX">
-                            <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-om-Zoe">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Dj-om-Zoe">
                                 <rect key="frame" x="12" y="56" width="88" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Compression:" id="5Bm-Nl-53q">
                                     <font key="font" metaFont="system"/>
@@ -112,7 +112,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="6vV-rV-ITV" column="eQs-KV-hxL" id="T5V-Av-aBB">
-                            <popUpButton key="contentView" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Dq5-lP-zsS">
+                            <popUpButton key="contentView" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dq5-lP-zsS">
                                 <rect key="frame" x="103" y="52" width="72" height="21"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="GdG-Qp-e8U">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -127,7 +127,7 @@
                             </popUpButton>
                         </gridCell>
                         <gridCell row="zYk-Ml-HAt" column="7Ct-m6-g6y" id="DAB-yY-fno">
-                            <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-WC-9Qs">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-WC-9Qs">
                                 <rect key="frame" x="59" y="24" width="41" height="24"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Color:" id="shK-cG-3dL">
                                     <font key="font" metaFont="system"/>
@@ -137,13 +137,13 @@
                             </textField>
                         </gridCell>
                         <gridCell row="zYk-Ml-HAt" column="eQs-KV-hxL" id="3lH-bt-QOB">
-                            <colorWell key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="mT4-DP-GXO" customClass="HNHUIColorWell">
-                                <rect key="frame" x="106" y="24" width="100" height="24"/>
+                            <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mT4-DP-GXO" customClass="HNHUIColorWell">
+                                <rect key="frame" x="103" y="22" width="44" height="28"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </colorWell>
                         </gridCell>
                         <gridCell row="kzN-Ch-gfi" column="7Ct-m6-g6y" id="SII-3r-mjn">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-zX-Jvu">
+                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-zX-Jvu">
                                 <rect key="frame" x="27" y="0.0" width="73" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="File format:" id="FgL-0B-JE9">
                                     <font key="font" metaFont="system"/>
@@ -153,7 +153,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="kzN-Ch-gfi" column="eQs-KV-hxL" id="3Hz-QZ-yB0">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7hG-5O-ghC">
+                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hG-5O-ghC">
                                 <rect key="frame" x="104" y="0.0" width="72" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="VersionInfo" id="C2T-fi-WiV">
                                     <font key="font" metaFont="system"/>

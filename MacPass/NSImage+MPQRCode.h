@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *QRCodeString;
 
-+ (instancetype)QRCodeImageWithString:(NSString *)string;
-- (instancetype)initWithCIImage:(CIImage *)ciImage;
++ (instancetype _Nullable)QRCodeImageWithString:(NSString *)string;
+- (instancetype _Nullable)initWithCIImage:(CIImage *)ciImage;
 
 @end
 

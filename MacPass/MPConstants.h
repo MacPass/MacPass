@@ -40,4 +40,11 @@ FOUNDATION_EXPORT NSString *const MPPluginUTI;
 FOUNDATION_EXPORT NSString *const MPBundleHelpURLKey;
 FOUNDATION_EXPORT NSString *const MPBundlePluginRepositoryURLKey;
 FOUNDATION_EXPORT NSString *const MPPluginCompatibilityURLKey;
+
+/**
+ Keychain Keys
+ */
+extern NSString *const MPTouchIdUnlockPublicKeyTag;
+extern NSString *const MPTouchIdUnlockPrivateKeyTag;
+
 #endif

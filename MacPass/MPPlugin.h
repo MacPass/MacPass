@@ -59,7 +59,7 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
 #pragma mark Supported Plugin Protocolls
 
 /*
- Adopting this protocolls allows for custom settings in the Plugin settings pane.
+ Adopting this protocoll allows for custom settings in the Plugin settings pane.
  MacPass will load your view controller and place it inside the settings window
  when a user has selected your plugin in the list
  */
@@ -71,8 +71,8 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
 @end
 
 /*
- Adopt this protocoll if you plugin can extract window title information for a set of applications
- This way, MacPass might yield better results for autotype. Beware that his might break interoparbility
+ Adopt this protocoll if your plugin can extract window title information for a set of applications
+ This way, MacPass might yield better results for autotype. Beware that this might break interoparbility
  */
 @protocol MPAutotypeWindowTitleResolverPlugin <NSObject>
 @required
@@ -113,7 +113,7 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
 @protocol MPImportPlugin <NSObject>
 @required
 /**
- Called by the Host to upate a menu item for importing.
+ Called by the host to upate a menu item for importing.
  You are supposed to update the title to something meaningfull.
  target and action will get set by host, so do not rely on them
  
@@ -122,7 +122,7 @@ FOUNDATION_EXPORT NSString *const MPPluginDescriptionInfoDictionaryKey;
 - (void)prepareImportMenuItem:(NSMenuItem *)item;
 /**
  Called by the host when an import is about to happen.
- Update the panel to allow work for all the files and formats you can open.
+ Update the panel to allow it to work for all the files and formats you can open.
  
  Host will simply run the panel with - beginSheetModalForWindow:completionHandler:
  and will call treeForRunningOpenPanel:withResponse: afterwards to handle the result.

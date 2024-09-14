@@ -88,6 +88,9 @@
                            sizeof(chars) / sizeof(chars[0]),
                            &realLength,
                            chars);
+  if(0 != success) {
+    NSLog(@"Unable to transpate modifiedKey:%@", MPStringFromModifiedKey(modifiedKey));
+  }
   return CFBridgingRelease(CFStringCreateWithCharacters(kCFAllocatorDefault, chars, realLength));
 }
 

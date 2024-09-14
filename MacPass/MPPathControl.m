@@ -41,7 +41,7 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
 - (instancetype)initWithCoder:(NSCoder *)coder {
   /* FIXME: this doesn't work well anymore. Need more work, see: https://www.mikeash.com/pyblog/custom-nscells-done-right.html */
   self = [super initWithCoder:coder];
-    self.delegate = self;
+  self.delegate = self;
   [self _setupCell];
   return self;
 }
@@ -68,11 +68,24 @@ NSString *const MPPathControlDidSetURLNotification = @"MPPathControlDidSetURLNot
   if([self.delegate respondsToSelector:@selector(pathControl:willDisplayOpenPanel:)]) {
     [self.delegate pathControl:self willDisplayOpenPanel:panel];
   }
-  [panel beginWithCompletionHandler:^(NSModalResponse result) {
-    if(result == NSModalResponseOK) {
-      self.URL = panel.URLs.firstObject;
-    }
-  }];
+  // fall back to modal sheet when browsing Versions. Otherwise we would get kicked out of the TimeMachien UI
+  // #1206 See Unable to use Time Machine function when have a KeyFile
+  // Setting NSDocumentRevisionsDebugMode=1 will prevent TimeMachien from exiting even when the openPanel is not shown as sheet
+  NSDocument *document = self.window.windowController.document;
+  if(document.isInViewingMode) {
+    [panel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+      if(result == NSModalResponseOK) {
+        self.URL = panel.URLs.firstObject;
+      }
+    }];
+  }
+  else {
+    [panel beginWithCompletionHandler:^(NSModalResponse result) {
+      if(result == NSModalResponseOK) {
+        self.URL = panel.URLs.firstObject;
+      }
+    }];
+  }
 }
 
 - (void)pathControl:(NSPathControl *)pathControl willDisplayOpenPanel:(NSOpenPanel *)openPanel {

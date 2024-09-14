@@ -91,6 +91,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
 - (IBAction)save:(id)sender {
   // Update entry settings!
   // FIXME: add model observing to ensure correct history recording
+  [self.view.window makeFirstResponder:nil];
   [self.generator saveToEntry:self.representedEntry];
   [self.presentingViewController dismissViewController:self];
 }
@@ -205,7 +206,7 @@ typedef NS_ENUM(NSUInteger, MPOTPType) {
     case MPOTPUpdateSourceQRImage: {
       NSString *qrCodeString = self.qrCodeImageView.image.QRCodeString;
       NSURL *otpURL = [NSURL URLWithString:qrCodeString];
-      self.generator = otpURL.isSteamOTPURL ? [[KPKSteamOTPGenerator alloc] initWithURL:self.urlTextField.stringValue] : [[KPKTimeOTPGenerator alloc] initWithURL:self.urlTextField.stringValue];
+      self.generator = otpURL.isSteamOTPURL ? [[KPKSteamOTPGenerator alloc] initWithURL:qrCodeString] : [[KPKTimeOTPGenerator alloc] initWithURL:qrCodeString];
       break;
     }
     case MPOTPUpdateSourceURL:{

@@ -21,10 +21,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MPDisplayOptions.h"
 
 APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 
 @class MPEntryContextMenuDelegate;
+@class SPUUpdater;
 
 @interface MPAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
@@ -36,9 +38,12 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
 @property (strong) IBOutlet NSMenu *exportMenu;
 
 @property (strong, readonly) MPEntryContextMenuDelegate *itemActionMenuDelegate;
+@property (strong, readonly) SPUUpdater *updater;
 @property (readonly) BOOL isTerminating;
 
 @property (nonatomic) BOOL isAllowedToStoreKeyFile;
+
+@property (strong) MPDisplayOption *statusItem;
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)showPreferences:(id)sender;

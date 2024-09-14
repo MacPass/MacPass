@@ -55,11 +55,9 @@
 }
 
 - (void)relaunchAfterDelay:(CGFloat)seconds {
-  NSTask *task = [[NSTask alloc] init];
-  task.launchPath = @"/bin/sh";
-  task.arguments = @[ @"-c", [NSString stringWithFormat:@"sleep %f; open \"%@\"", seconds, NSBundle.mainBundle.bundlePath] ];
-  [task launch];
-  [self terminate:nil];
+  NSArray *args = @[@"-c", [NSString stringWithFormat:@"sleep %f; open \"%@\"", seconds, NSBundle.mainBundle.bundlePath]];
+  [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:args];
+  [self terminate:self];
 }
 
 - (MPAppDelegate *)mp_delegate {

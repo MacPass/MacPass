@@ -24,9 +24,13 @@
 #import "MPAppDelegate.h"
 #import "MPDocumentWindowController.h"
 #import "MPDocument.h"
+#import "MPDocument+BiometricEncryptionSupport.h"
 #import "MPSettingsHelper.h"
 #import "MPPathControl.h"
 #import "MPTouchBarButtonCreator.h"
+#import "MPSettingsHelper.h"
+#import "MPConstants.h"
+#import "MPTouchIdCompositeKeyStore.h"
 
 #import "HNHUi/HNHUi.h"
 
@@ -44,6 +48,9 @@
 @property (weak) IBOutlet NSButton *enablePasswordCheckBox;
 @property (weak) IBOutlet NSButton *unlockButton;
 @property (weak) IBOutlet NSButton *cancelButton;
+@property (weak) IBOutlet NSButton *touchIdButton;
+@property (weak) IBOutlet NSButton *touchIdEnabledButton;
+@property (strong) IBOutlet NSPopUpButton *touchIdModeButton;
 
 @property (copy) NSString *message;
 @property (copy) NSString *cancelLabel;
@@ -81,6 +88,37 @@
   [self.enablePasswordCheckBox bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.togglePasswordButton bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
   [self.passwordTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(enablePassword)) options:nil];
+  
+  NSMenu* touchIDMenu = [[NSMenu alloc] init];
+  NSMenuItem *disabledItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_DISABLED", @"menu item to disable touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  NSMenuItem *transitentItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_TRANSIENT_KEY_STORAGE", @"menu item to enable transient touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  NSMenuItem *persistentItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"TOUCHID_PERSISTENT_KEY_STORAGE", @"menu item to enable persisntent touchid key storage")
+                             action:NULL
+                      keyEquivalent:@""];
+  
+  disabledItem.tag = MPTouchIDKeyStorageDisabled;
+  transitentItem.tag = MPTouchIDKeyStorageTransient;
+  persistentItem.tag = MPTouchIDKeyStoragePersistent;
+  
+  touchIDMenu.itemArray = @[disabledItem, transitentItem, persistentItem];
+  self.touchIdModeButton.menu = touchIDMenu;
+  [self.touchIdModeButton bind:NSSelectedTagBinding
+                         toObject:NSUserDefaultsController.sharedUserDefaultsController
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdEnabled]
+                          options:nil];
+  [self.touchIdEnabledButton bind:NSValueBinding
+                         toObject:NSUserDefaultsController.sharedUserDefaultsController
+                      withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdEnabled]
+                          options:nil];
+  self.touchIdEnabledButton.hidden = YES;
+  if (@available(macOS 10.13.4, *)) {
+    self.touchIdEnabledButton.hidden = NO;
+    [self _touchIdUpdateToolTip];
+  }
   [self _reset];
 }
 
@@ -93,10 +131,6 @@
   self.message = message;
   self.cancelLabel = cancelLabel;
   [self _reset];
-}
-
-- (void)requestPasswordWithCompletionHandler:(passwordInputCompletionBlock)completionHandler {
-  [self requestPasswordWithMessage:nil cancelLabel:nil completionHandler:completionHandler];
 }
 
 #pragma mark Properties
@@ -127,14 +161,85 @@
   NSString *password = self.enablePassword ? self.passwordTextField.stringValue : nil;
   
   BOOL cancel = (sender == self.cancelButton);
-  BOOL result = self.completionHandler(password, self.keyPathControl.URL, cancel, &error);
-  if(cancel || result) {
+  NSURL* keyURL = self.keyPathControl.URL;
+  NSData *keyFileData = keyURL ? [NSData dataWithContentsOfURL:keyURL] : nil;
+  KPKKey* passwordKey = [KPKKey keyWithPassword:password];
+  KPKKey* fileKey = [KPKKey keyWithKeyFileData:keyFileData];
+  KPKCompositeKey* compositeKey = [[KPKCompositeKey alloc] init];
+  [compositeKey addKey:passwordKey];
+  [compositeKey addKey:fileKey];
+  /* After the completion handler finished we no longer have a windowController set */
+  NSString* documentKey = [self biometricKeyForCurrentDocument];
+  BOOL result = self.completionHandler(compositeKey, keyURL, cancel, &error);
+  if(result) {
+    if(nil != documentKey) {
+      [MPTouchIdCompositeKeyStore.defaultStore saveCompositeKey:compositeKey forDocumentKey:documentKey];
+    }
+    return;
+  }
+  if(cancel) {
     return;
   }
   [self _showError:error];
   /* do not shake if we are a sheet */
   if(!self.view.window.isSheet) {
     [self.view.window shakeWindow:nil];
+  }
+}
+/*
+- (KPKCompositeKey*)_touchIdDecryptCompositeKey:(NSData*)encryptedKey {
+  NSError *error;
+  return [MPTouchIdCompositeKeyStore.defaultStore compositeKeyForEncryptedKeyData:encryptedKey error:&error];
+}*/
+
+- (NSString *)biometricKeyForCurrentDocument {
+  MPDocument* currentDocument = (MPDocument *)self.windowController.document;
+  return currentDocument.biometricKey;
+}
+
+- (bool) _touchIdIsUnlockAvailable {
+  MPDocument *currentDocument = (MPDocument *)self.windowController.document;
+  return (nil != currentDocument.encryptedKeyData);
+}
+
+- (IBAction)unlockWithTouchID:(id)sender {
+  NSString* documentKey = [self biometricKeyForCurrentDocument];
+  if(nil == documentKey) {
+    return;
+  }
+  NSData* encryptedKey = [MPTouchIdCompositeKeyStore.defaultStore loadEncryptedCompositeKeyForDocumentKey:documentKey];
+  if(!encryptedKey) {
+    self.touchIdButton.enabled = NO;
+    return;
+  }
+  NSError *error;
+  KPKCompositeKey* compositeKey = [MPTouchIdCompositeKeyStore.defaultStore compositeKeyForEncryptedKeyData:encryptedKey error:&error];
+  if(!compositeKey) {
+    self.touchIdButton.enabled = NO;
+    return;
+  }
+  bool success = self.completionHandler(compositeKey, NULL, false, &error);
+  if(success) {
+    return;
+  }
+  // TODO: clear encryptedKey if password was wrong? Show user feedback? 
+  self.touchIdButton.enabled = NO;
+  [self _showError:error];
+}
+
+- (IBAction)touchIdEnabledChanged:(id)sender {
+  [self _touchIdUpdateToolTip];
+}
+
+- (void) _touchIdUpdateToolTip {
+  switch(self.touchIdEnabledButton.state) {
+    case NSControlStateValueOn:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_ENABELD", @"Tooltip displayed when TouchID is is fully enabeld");
+    case NSControlStateValueOff:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_DISABLED", @"Tooltip displayed when TouchID is disabled");
+    case NSControlStateValueMixed:
+    default:
+      self.touchIdEnabledButton.toolTip = NSLocalizedString(@"TOOLTIP_TOUCHID_TRANSIENT", @"Tooltip displayed when TouchID is in transient (inmemory) mode");
   }
 }
 
@@ -153,6 +258,9 @@
   self.enablePassword = YES;
   self.passwordTextField.stringValue = @"";
   self.messageInfoTextField.hidden = (nil == self.message);
+  self.touchIdButton.hidden = ![self _touchIdIsUnlockAvailable];
+  self.touchIdButton.enabled = YES;
+
   if(self.message) {
     self.messageInfoTextField.stringValue = self.message;
     self.messageImageView.image = [NSImage imageNamed:NSImageNameInfo];
@@ -235,6 +343,5 @@
     self.keyFileWarningTextField.hidden = YES;
   }
 }
-
 
 @end

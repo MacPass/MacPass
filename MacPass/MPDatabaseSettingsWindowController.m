@@ -417,6 +417,20 @@
   [self.recommendKeyChangeIntervalTextField bind:NSEnabledBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChange)) options:nil];
   [self.recommendKeyChangeIntervalTextField bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(recommendKeyChangeInterval)) options:nil];
   ((MPDayCountFormatter *)self.recommendKeyChangeIntervalTextField.formatter).valueFormat = valueFormat;
+  
+  if(nil != tree.metaData.masterKeyChanged) {
+    NSString *keyChangeTextFormat = NSLocalizedString(@"LAST_DATABASE_KEY_CHANGE_DATE_%@", "Information about last key change date");
+    NSDateFormatter *changeDateFormatter = [[NSDateFormatter alloc] init];
+    changeDateFormatter.timeStyle = NSDateFormatterNoStyle;
+    changeDateFormatter.dateStyle = NSDateFormatterLongStyle;
+    
+    NSString *keyChangeDateString = [changeDateFormatter stringFromDate:tree.metaData.masterKeyChanged];
+    
+    self.lastKeyChangeTextField.stringValue = [NSString stringWithFormat:keyChangeTextFormat, keyChangeDateString];
+  }
+  else {
+    self.lastKeyChangeTextField.stringValue = NSLocalizedString(@"DATABASE_KEY_NEVER_CHANGED", "Displayed when the databse key was never changed/is not set");
+  }
 }
 
 - (void)_updateFirstResponder {

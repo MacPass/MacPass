@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -45,7 +45,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="101">
-                    <rect key="frame" x="316" y="13" width="136" height="32"/>
+                    <rect key="frame" x="317" y="13" width="135" height="32"/>
                     <buttonCell key="cell" type="push" title="Use Default Icon" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="102">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8kv-BJ-IEk">
-                    <rect key="frame" x="194" y="13" width="124" height="32"/>
+                    <rect key="frame" x="195" y="13" width="124" height="32"/>
                     <buttonCell key="cell" type="push" title="Download Icon" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iaf-XW-XUo">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -65,7 +65,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="His-4A-hcY">
-                    <rect key="frame" x="120" y="13" width="76" height="32"/>
+                    <rect key="frame" x="121" y="13" width="76" height="32"/>
                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1kM-cI-P1o">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -158,6 +158,7 @@
                 <constraint firstAttribute="trailing" secondItem="MEC-x9-zrX" secondAttribute="trailing" id="l85-hK-J0S"/>
                 <constraint firstItem="MEC-x9-zrX" firstAttribute="top" secondItem="113" secondAttribute="top" id="uEr-Jk-Jfa"/>
             </constraints>
+            <point key="canvasLocation" x="-1499" y="-64"/>
         </customView>
     </objects>
     <resources>

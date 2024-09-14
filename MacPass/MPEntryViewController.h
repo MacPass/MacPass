@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, MPDisplayMode) {
 - (IBAction)copyPassword:(id)sender;
 - (IBAction)copyCustomAttribute:(id)sender;
 - (IBAction)copyURL:(id)sender;
+- (IBAction)copyTOTP:(id)sender;
 - (IBAction)openURL:(id)sender;
 - (IBAction)copyAsReference:(id)sender;
 
