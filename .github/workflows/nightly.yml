@@ -20,6 +20,8 @@ jobs:
           submodules: recursive
 
       - name: Bootstrap Carthage
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: carthage bootstrap --platform macOS
 
       - name: Install xcpretty
