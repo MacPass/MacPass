@@ -53,7 +53,7 @@ jobs:
           cd ./build/Build/Products/Release
           zip -9ry MacPass-continuous.zip MacPass.app
 
-      - name: Create MD5 Hash
+      - name: Create SHA256 Hash
         run: |
           cd ./build/Build/Products/Release
           shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
