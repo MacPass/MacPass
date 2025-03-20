@@ -6,31 +6,33 @@ on:
   #pull_request:
   #  branches: [ master ]
   schedule:
-    - cron:  '0 23 * * *'
+    - cron: "0 23 * * *"
 
   workflow_dispatch:
 
 jobs:
   nightly:
-    runs-on: macos-12
+    runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Bootstrap Carthage
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: carthage bootstrap --platform macOS
 
       - name: Install xcpretty
         run: gem install xcpretty --no-document --quiet
-      
+
       - name: Build
         run: |
           set -o pipefail
           xcodebuild clean
-          xcodebuild build -configuration release -project MacPass.xcodeproj  -scheme MacPass CODE_SIGNING_REQUIRED=NO -derivedDataPath ./build | xcpretty -c
-      
+          xcodebuild build -configuration release -project MacPass.xcodeproj -scheme MacPass CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" -derivedDataPath ./build | xcpretty -c
+
       - name: Export Localizations
         run: |
           xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage de 
@@ -42,20 +44,20 @@ jobs:
           xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage ru
           xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage sv-SE
           xcodebuild -project MacPass.xcodeproj -exportLocalizations -localizationPath Localisations -exportLanguage zh-Hans
-      
+
       - name: Zip Localizations
         run: zip -9ry Localisations.zip Localisations
-      
+
       - name: Package Release
         run: |
           cd ./build/Build/Products/Release
           zip -9ry MacPass-continuous.zip MacPass.app
-      
-      - name: Create MD5 Hash
+
+      - name: Create SHA256 Hash
         run: |
           cd ./build/Build/Products/Release
           shasum -a 256 MacPass-continuous.zip > MacPass-continuous.zip.sha256
-     
+
       #- name: Release
       #  uses: eine/tip@master
       #  with:
@@ -65,9 +67,9 @@ jobs:
       #      Localisations.zip
       #      ./build/Build/Products/Release/MacPass-continuous.zip
       #      ./build/Build/Products/Release/MacPass-continuous.zip.sha256
-      
+
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: continuous
