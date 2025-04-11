@@ -30,6 +30,7 @@
 #import "MPUpdatePreferencesController.h"
 #import "MPPluginPreferencesController.h"
 #import "MPTabViewController.h"
+#import "MPSecurityPreferencesController.h"
 
 @interface MPPreferencesWindowController ()
 
@@ -110,6 +111,9 @@
     case MPPreferencesTabPlugins:
       tabClass = MPPluginPreferencesController.class;
       break;
+    case MPPreferencesTabSecurity:
+      tabClass = MPSecurityPreferencesController.class;
+      break;
     case MPPreferencesTabIntegration:
       tabClass = MPIntegrationPreferencesController.class;
       break;
@@ -136,6 +140,7 @@
 
 - (void)_setupDefaultPreferencesTabs {
   NSArray<NSViewController<MPPreferencesTab>*> *controllers = @[ [[MPGeneralPreferencesController alloc] init],
+                                                                 [[MPSecurityPreferencesController alloc] init],
                                                                  [[MPIntegrationPreferencesController alloc] init],
                                                                  [[MPWorkflowPreferencesController alloc] init],
                                                                  [[MPUpdatePreferencesController alloc] init],

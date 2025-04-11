@@ -26,6 +26,7 @@
 
 typedef NS_ENUM(NSUInteger, MPPreferencesTab) {
   MPPreferencesTabGeneral,
+  MPPreferencesTabSecurity,
   MPPreferencesTabIntegration,
   MPPreferencesTabWorkflow,
   MPPreferencesTabUpdate,

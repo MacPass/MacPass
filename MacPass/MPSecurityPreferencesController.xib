@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MPSecurityPreferencesController">
+            <connections>
+                <outlet property="allowScreenshotsCheckButton" destination="HD6-39-SKh" id="mqC-bs-zCs"/>
+                <outlet property="clearPasteboardOnQuitCheckButton" destination="KP1-6g-Yqo" id="QhG-nU-EfN"/>
+                <outlet property="clearPasteboardTimeoutPopup" destination="zGo-3Q-WAA" id="PaR-LO-1so"/>
+                <outlet property="idleTimeOutPopup" destination="6lH-n8-hV9" id="YEZ-tR-Djs"/>
+                <outlet property="lockOnLogoutCheckButton" destination="ziJ-ht-p54" id="Tsf-gp-DwM"/>
+                <outlet property="lockOnScreenSleepCheckButton" destination="ROH-Zn-Ype" id="B01-PX-g04"/>
+                <outlet property="lockOnSleepCheckButton" destination="KkI-GK-w8c" id="9Ub-5u-uKI"/>
+                <outlet property="preventUniversalClipboardSupportCheckButton" destination="FmI-t1-V7h" id="TaZ-DV-zxI"/>
+                <outlet property="rememberKeyFileCheckButton" destination="ghE-Zl-B1s" id="Nq4-jV-9iF"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="425"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8T-QF-slI">
+                    <rect key="frame" x="20" y="61" width="400" height="344"/>
+                    <subviews>
+                        <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G3z-aN-Wk0">
+                            <rect key="frame" x="0.0" y="324" width="261" height="20"/>
+                            <subviews>
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nVB-JC-BBE">
+                                    <rect key="frame" x="-2" y="2" width="120" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="fSa-HW-qbP"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Clear Copied Items" id="NMx-H8-qw1">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-3Q-WAA">
+                                    <rect key="frame" x="121" y="-4" width="144" height="25"/>
+                                    <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="3PG-ge-sez" id="7qH-SJ-n5N">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" title="ClipboardClearInterval" id="OvT-46-ItY">
+                                            <items>
+                                                <menuItem title="Never" state="on" id="3PG-ge-sez">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="after 10 Seconds" tag="10" id="KPs-XT-xJQ"/>
+                                                <menuItem title="after 30 Seconds" tag="30" id="nXQ-XQ-OjR"/>
+                                                <menuItem title="after 1 Minute" tag="60" id="GjO-Rq-CcJ"/>
+                                                <menuItem title="after 5 Minutes" tag="300" id="GOb-x5-v3v"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <button verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KP1-6g-Yqo">
+                            <rect key="frame" x="18" y="299" width="168" height="18"/>
+                            <buttonCell key="cell" type="check" title="Clear Clipboard on Quit" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="t4Z-bK-KMl">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-t1-V7h">
+                            <rect key="frame" x="-2" y="275" width="245" height="18"/>
+                            <buttonCell key="cell" type="check" title="Prevent Universal Clipboard support" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KvW-RN-z6j">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mNo-r9-dr0">
+                            <rect key="frame" x="-2" y="226" width="404" height="42"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="vCZ-9c-5s7">
+                                <font key="font" metaFont="smallSystem"/>
+                                <string key="title">Disabling this compromises security. If enabled, anything copied to the Clipboard in MacPass will be available on your connected iOS devices. You should clear the clipboard on those devices manually.</string>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkh-qn-gd7">
+                            <rect key="frame" x="0.0" y="198" width="215" height="20"/>
+                            <subviews>
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1o-N4-bSv">
+                                    <rect key="frame" x="-2" y="3" width="93" height="16"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lock while idle" id="mJZ-10-3aY">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6lH-n8-hV9">
+                                    <rect key="frame" x="94" y="-4" width="125" height="25"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="V0L-v9-lbJ">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" title="LockTimes" id="3SU-Tz-vNr">
+                                            <items>
+                                                <menuItem title="Never" id="Eho-b6-2r3"/>
+                                                <menuItem title="for 1 Minute" tag="60" id="hcu-tg-UHB"/>
+                                                <menuItem title="for 5 Minutes" tag="300" id="DUt-fV-xPf"/>
+                                                <menuItem title="for 15 Minutes" tag="900" id="pPY-4B-V6t">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="KkI-GK-w8c">
+                            <rect key="frame" x="18" y="173" width="123" height="18"/>
+                            <buttonCell key="cell" type="check" title="Lock after sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zjF-CD-1DV">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="ziJ-ht-p54">
+                            <rect key="frame" x="18" y="149" width="133" height="18"/>
+                            <buttonCell key="cell" type="check" title="Lock after log out" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fdI-0a-VRg">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ROH-Zn-Ype">
+                            <rect key="frame" x="18" y="125" width="168" height="18"/>
+                            <buttonCell key="cell" type="check" title="Lock after screen sleep" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8mt-iT-q7d">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="ghE-Zl-B1s">
+                            <rect key="frame" x="-2" y="101" width="224" height="18"/>
+                            <buttonCell key="cell" type="check" title="Remember Keyfile for Databases" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Q9B-M0-yCP">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="E0U-Bs-qDP">
+                            <rect key="frame" x="-2" y="52" width="404" height="42"/>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="5aM-bw-1qA">
+                                <font key="font" metaFont="smallSystem"/>
+                                <string key="title">Enabling this compromises security. If enabled, your preferences will contain mappings from database to keyfile. Key locations for databases without a password will not be saved.</string>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2MH-GR-gb7">
+                            <rect key="frame" x="-7" y="17" width="184" height="32"/>
+                            <buttonCell key="cell" type="push" title="Clear all stored locations" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uaC-TX-Vza">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="clearRememberdKeyFiles:" target="-1" id="oTL-Bw-cAm"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HD6-39-SKh">
+                            <rect key="frame" x="-2" y="-1" width="190" height="18"/>
+                            <buttonCell key="cell" type="check" title="Allow Window Screenshots" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8Ik-1T-6SR">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ziJ-ht-p54" firstAttribute="leading" secondItem="W8T-QF-slI" secondAttribute="leading" constant="20" symbolic="YES" id="2eb-vH-1lz"/>
+                        <constraint firstItem="ROH-Zn-Ype" firstAttribute="leading" secondItem="W8T-QF-slI" secondAttribute="leading" constant="20" symbolic="YES" id="FFq-cG-Pf8"/>
+                        <constraint firstItem="KkI-GK-w8c" firstAttribute="leading" secondItem="W8T-QF-slI" secondAttribute="leading" constant="20" symbolic="YES" id="JRu-lW-FBA"/>
+                        <constraint firstItem="KP1-6g-Yqo" firstAttribute="leading" secondItem="W8T-QF-slI" secondAttribute="leading" constant="20" symbolic="YES" id="Yi0-UQ-ri3"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="fym-rW-PhG"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="W8T-QF-slI" secondAttribute="trailing" constant="20" symbolic="YES" id="Mm9-Gi-0Wc"/>
+                <constraint firstItem="W8T-QF-slI" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="Reh-hK-XaU"/>
+                <constraint firstItem="W8T-QF-slI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="ejB-oC-c7T"/>
+            </constraints>
+            <point key="canvasLocation" x="-540" y="-107"/>
+        </customView>
+    </objects>
+</document>
