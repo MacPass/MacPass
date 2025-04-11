@@ -69,6 +69,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
 @property (strong) MPPasswordEditWindowController *passwordEditWindowController;
 @property (strong) MPToolbarDelegate *toolbarDelegate;
 @property (strong) MPFixAutotypeWindowController *fixAutotypeWindowController;
+@property (nonatomic, assign) BOOL allowScreenshots;
 
 //@property (nonatomic, copy) MPPasswordChangedBlock passwordChangedBlock;
 
@@ -84,6 +85,7 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   self = [super initWithWindow:nil];
   if( self ) {
     _firstResponder = nil;
+    _allowScreenshots = NO;
     _toolbarDelegate = [[MPToolbarDelegate alloc] init];
     _splitViewController = [[MPDocumentSplitViewController alloc] init];
     _documentWindowDelegate = [[MPDocumentWindowDelegate alloc] init];
@@ -95,18 +97,20 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark Properties
+
+- (void)setAllowScreenshots:(BOOL)allowScreenshots {
+  if (_allowScreenshots != allowScreenshots) {
+    _allowScreenshots = allowScreenshots;
+  }
+  self.window.sharingType = _allowScreenshots ? NSWindowSharingReadOnly : NSWindowSharingNone;
+}
+
 #pragma mark View Handling
 - (void)windowDidLoad {
   [super windowDidLoad];
   
   self.window.delegate = self.documentWindowDelegate;
-  BOOL allowScreenshots = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAllowScreenshots];
-  if(!allowScreenshots) {
-    self.window.sharingType = NSWindowSharingNone;
-  }
-  else {
-    self.window.sharingType = NSWindowSharingReadOnly;
-  }
 
   if (@available(macOS 11.0, *)) {
     /* let the user decide how to dipsplay the toolbar */
@@ -132,6 +136,13 @@ typedef void (^MPPasswordChangedBlock)(BOOL didChangePassword);
   
   [self.splitViewController registerNotificationsForDocument:document];
   [self.toolbarDelegate registerNotificationsForDocument:document];
+  
+  // init the value then bind to settings
+  self.allowScreenshots = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyAllowScreenshots];
+  [self bind:NSStringFromSelector(@selector(allowScreenshots))
+    toObject:NSUserDefaultsController.sharedUserDefaultsController
+ withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyAllowScreenshots]
+     options:nil];
   
   self.toolbar = [[NSToolbar alloc] initWithIdentifier:@"MainWindowToolbar"];
   self.toolbar.autosavesConfiguration = YES;
