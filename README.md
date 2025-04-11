@@ -96,9 +96,7 @@ The following list might not be complete, please refer to [merged Pull Requests]
 
 ### Art
 
-[Iiro Jäppinen](https://iiro.jappinen.me) MacPass icon
-
-[Thom Williams](https://github.com/thomscode) Document icons
+[Josef Sahlberg](https://josef.sh) MacPass icon, document icon
 
 [Joanna Olsen](https://github.com/JoannaOlsen) Database Icons
 
