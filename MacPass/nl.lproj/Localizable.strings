@@ -1,3 +1,18 @@
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "Zoek Overal";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
+
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "Wijzig Time-One-Time-Password instellingen.";
+
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "Autotype heeft meerdere overeenkomsten gevonden voor scherm \"%2$@\" van applicatie \"%1$@\". Bevestig om verder te gaan.";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "Er zijn meerdere overeenkomsten voor scherm \"%2$@\" van applicatie \"%1$@\". Selecteer de identiteit om mee in te loggen.";
+
 /* Count of characters remaining in pickchars dialog */
 "%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld tekens over om te kiezen";
 
