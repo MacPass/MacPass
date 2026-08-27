@@ -718,7 +718,8 @@
 		4C7BD07519FE94C900C7AA5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C7D4BE22DA91C1C00B04C10 /* MPSecurityPreferencesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSecurityPreferencesController.h; sourceTree = "<group>"; };
 		4C7D4BE32DA91C1C00B04C10 /* MPSecurityPreferencesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSecurityPreferencesController.m; sourceTree = "<group>"; };
-		4C7D4BE42DA91C1C00B04C10 /* MPSecurityPreferencesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPSecurityPreferencesController.xib; sourceTree = "<group>"; };
+		4C7D4BE72DA91C1C00B04C10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MPSecurityPreferencesController.xib; sourceTree = "<group>"; };
+		4C7D4BE82DA91C1C00B04C10 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MPSecurityPreferencesController.strings"; sourceTree = "<group>"; };
 		4C7D9D5224ABE6FD00907034 /* MPTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPTabViewController.h; sourceTree = "<group>"; };
 		4C7D9D5324ABE6FD00907034 /* MPTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPTabViewController.m; sourceTree = "<group>"; };
 		4C7F8B691A10B68400CCB83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WelcomeView.xib; sourceTree = "<group>"; };
@@ -2689,6 +2690,15 @@
 				69385E4C274ACFE0001AB1E9 /* cs */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		4C7D4BE42DA91C1C00B04C10 /* MPSecurityPreferencesController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C7D4BE72DA91C1C00B04C10 /* Base */,
+				4C7D4BE82DA91C1C00B04C10 /* zh-Hans */,
+			);
+			name = MPSecurityPreferencesController.xib;
 			sourceTree = "<group>";
 		};
 		4C7F8B6A1A10B68400CCB83D /* WelcomeView.xib */ = {
