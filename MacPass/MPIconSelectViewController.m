@@ -140,6 +140,7 @@ typedef NS_ENUM(NSInteger, MPIconDownloadStatus) {
         self.downloadStatus = MPIconDownloadStatusNone;
         [metaData addCustomIcon:newIcon];
         [self _updateCollectionViewContent];
+        [self _selectIcon:newIcon];
       }
       else {
         self.downloadStatus = MPIconDownloadStatusError;
