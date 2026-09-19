@@ -55,6 +55,11 @@ APPKIT_EXTERN NSString *const MPDidChangeStoredKeyFilesSettings;
  *  @param sender sender of this action
  */
 - (IBAction)clearRememberdKeyFiles:(id)sender;
+/**
+ *  Clears the composite keys stored for TouchID unlock for any documents.
+ *  @param sender sender of this action
+ */
+- (IBAction)clearStoredTouchIdKeys:(id)sender;
 
 - (void)lockAllDocuments;
 

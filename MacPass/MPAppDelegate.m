@@ -37,6 +37,7 @@
 #import "MPStringLengthValueTransformer.h"
 #import "MPPrettyPasswordTransformer.h"
 #import "MPTemporaryFileStorageCenter.h"
+#import "MPTouchIdCompositeKeyStore.h"
 #import "MPValueTransformerHelper.h"
 #import "MPUserNotificationCenterDelegate.h"
 #import "MPWelcomeViewController.h"
@@ -103,7 +104,11 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
     
     /* We know that we do not use the variable after instantiation */
     MPDocumentController *documentController = [[MPDocumentController alloc] init];
-    NSAssert(documentController, @"Custom document controller cannot be nil");    
+    NSAssert(documentController, @"Custom document controller cannot be nil");
+
+    /* The store observes sleep to clear keys. Create it now so persisted keys are
+       cleared even if no database was opened in this session */
+    (void)MPTouchIdCompositeKeyStore.defaultStore;
   }
   return self;
 }
@@ -348,6 +353,10 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 
 - (void)clearRememberdKeyFiles:(id)sender {
   [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyRememeberdKeysForDatabases];
+}
+
+- (void)clearStoredTouchIdKeys:(id)sender {
+  [MPTouchIdCompositeKeyStore.defaultStore clearStoredCompositeKeys];
 }
 
 - (void)showHelp:(id)sender {
