@@ -405,7 +405,9 @@ NSString *const MPDocumentGroupKey                            = @"MPDocumentGrou
   if(otherTree) {
     [self.tree synchronizeWithTree:otherTree mode:KPKSynchronizationModeSynchronize options:options];
     /* the key might have changed so update ours! */
-    [self updateChangeCount:NSChangeDone];
+    [self updateChangeCount:NSChangeDone]; // Register change since we did mark document as edited
+    NSDictionary *attributes = [NSFileManager.defaultManager attributesOfItemAtPath:url.path error:nil];
+    self.fileModificationDate = attributes.fileModificationDate; // Update to date on disk to prevent alert pop up on save!
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = NSApp.applicationName;
     notification.informativeText = NSLocalizedString(@"AUTO_MERGE_NOTIFICATION_TEXT", @"Sucessfully merged external changes");
