@@ -38,7 +38,7 @@ static MPOpenURLHandler *_defaultInstance;
 
 
 - (instancetype)_init {
-  NSAssert(_defaultInstance == nil, @"Multiple instances of MPLockDaemon not allowed!");
+  NSAssert(_defaultInstance == nil, @"Multiple instances of %@ not allowed!", self.className);
   self = [super init];
   return self;
 }
