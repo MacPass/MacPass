@@ -303,6 +303,24 @@ NSString *const MPToolbarItemIdentifierAutotype     = @"TOOLBAR_AUTOTYPE";
   return [MPActionHelper actionOfType:actionType];
 }
 
+/*- (id)_targetForToolbarItemIdentifier:(NSString *)identifier {
+  static NSDictionary *targetDict;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    targetDict = @{ MPToolbarItemIdentifierLock: nil,
+                    MPToolbarItemIdentifierAddEntry: nil,
+                    MPToolbarItemIdentifierAddGroup: nil,
+                    MPToolbarItemIdentifierDelete: nil,
+                    MPToolbarItemIdentifierCopyPassword: nil,
+                    MPToolbarItemIdentifierCopyUsername: nil,
+                    MPToolbarItemIdentifierInspector: nil,
+                    MPToolbarItemIdentifierHistory: nil,
+                    MPToolbarItemIdentifierAutotype: nil
+    };
+  });
+  return targetDict[identifier];
+}*/
+
 - (NSMenu *)_allocateSearchMenuTemplate {
   NSMenu *menu = [[NSMenu alloc] init];
   NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"CLEAR_RECENT_SEARCHES", @"Menu to clear recent searches") action:NULL keyEquivalent:@""];
