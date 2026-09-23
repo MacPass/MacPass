@@ -1,7 +1,8 @@
 ### macpassapp.org was dropped due to a fuck-up on my part.
 
-* The website is available under https://macpass.app
-* Until the issue is resolved please disable the automatic plugin update in the plugin settings to prevent any malicious activity.
+* The website is now available under https://macpass.app
+* Update to [MacPass 0.8.2](https://github.com/MacPass/MacPass/releases/tag/0.8.2) **as soon as possible!**
+* If – for whatever reason – you still run version 0.8.1 or older please disable the automatic plugin update in the plugin settings to prevent any malicious activity.
 * MacPass will refuse to load unsigned or wrongly signed plugins if you uncheck the "load unsecure plugins". This is the default behaviour. If you have not changed this, you're set!
 * If plugins get disabled due to a version downgrade in the bundled plugins.json file, check "load incompatible plugins". This setting does **not** enable unsigned plugins to be loaded!
 * Releases are **not**  published on the website or vie the https://macpassapp.org url.
@@ -9,10 +10,9 @@
 
 # MacPass
 
-There are a lot of iOS KeePass tools around but a distinct lack of a good native macOS version.
-KeePass can be used via Mono on macOS but lacks vital functionality and feels sluggish and simply out of place.
+MacPass began as an attempt to provide a nice looking feature complete KeePass client for macOS. To a degree this has been accomplished. Over the years, a couple of other awesome clients were created. With the decline of steady updates, MacPass fell behind in terms of UI and features. I hope we can revive the old fella and get cracking again!
 
-MacPass is an attempt to create a native macOS port of KeePass on a solid open source foundation with a vibrant community pushing it further to become the best KeePass client for macOS.
+I'm very proud that to this day, MacPass is the only native macOS client that is fully open source!
 
 ## Download
 
@@ -46,14 +46,11 @@ After that you can build and run in Xcode. The following command will build and 
 
 Some questions might be answered in the [FAQ](https://github.com/MacPass/MacPass/wiki/FAQ)
 
-Another place to look is the IRC channel [#macpass](irc://irc.freenode.org/macpass) on [irc.freenode.org](irc://irc.freenode.org)
-
-Or follow the Twitter account [@MacPassApp](https://twitter.com/MacPassApp)
+Or follow the Mastodon account [@MacPass](https://mastodon.social/@macpass)
 
 ## System Requirement
 
-MacPass 0.7 requires macOS 10.10 Yosemite or later.
-Earlier versions of MacPass require macOS 10.8 Mountain Lion or later.
+Version 0.8 requires macOS 10.13 High Sierra or later. Version 0.7 requires macOS 10.10 Yosemite or later and earlier versions of MacPass require macOS 10.8 Mountain Lion or later.
 
 ## Status
 
@@ -75,8 +72,8 @@ More Screenshots in the [Wiki](https://github.com/MacPass/MacPass/wiki/Screensho
 
 ## License
 
-MacPass, a KeePass compatible Password Manager for OS X
-Copyright (c) 2012-2017  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/MacPass/MacPass/graphs/contributors)
+MacPass, a KeePass compatible Password Manager for macOS
+Copyright (c) 2012-2026  Michael Starke (HicknHack Software GmbH) and all [MacPass contributors](https://github.com/MacPass/MacPass/graphs/contributors)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
