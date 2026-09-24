@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param documentKey the key to identify the document. Normally you should use the file name
 - (NSData  * _Nullable)loadEncryptedCompositeKeyForDocumentKey:(NSString *)documentKey;
 
+/// Discards every stored composite key, transient as well as persisted ones.
+/// The database password has to be entered again before TouchID can be used for any document.
+- (void)clearStoredCompositeKeys;
+
 - (KPKCompositeKey * _Nullable)compositeKeyForEncryptedKeyData:(NSData *)data error:(NSError **)error;
 - (NSData * _Nullable)encryptedDataForCompositeKey:(KPKCompositeKey *)compositeKey error:(NSError **)error;
 
