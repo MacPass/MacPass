@@ -100,6 +100,17 @@
   [self.outlineViewController showOutline];
 }
 
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem {
+  return [self validateUserInterfaceItem:theItem];
+}
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
+  if(anItem.action == @selector(toggleInspector:)) {
+    return YES;
+  }
+  return [super validateUserInterfaceItem:anItem];
+}
+
 - (void)toggleInspector:(id)sender {
   NSSplitViewItem *inspector = [self splitViewItemForViewController:self.inspectorViewController];
   inspector.collapsed  = !inspector.collapsed;
