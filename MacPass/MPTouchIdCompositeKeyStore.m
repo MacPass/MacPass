@@ -14,7 +14,10 @@
 
 @interface MPTouchIdCompositeKeyStore ()
 @property (readonly, strong) NSMutableDictionary* keys;
+@property (readonly, strong) NSMutableDictionary* keyDates;
 @property (nonatomic) MPTouchIDKeyStorage touchIdEnabledState;
+@property (nonatomic) NSUInteger keyTimeOut;
+@property (nonatomic) BOOL clearKeysOnSleep;
 @end
 
 @implementation MPTouchIdCompositeKeyStore
@@ -32,12 +35,25 @@
   self = [super init];
   if(self) {
     _keys = [[NSMutableDictionary alloc] init];
+    _keyDates = [[NSMutableDictionary alloc] init];
     [self bind:NSStringFromSelector(@selector(touchIdEnabledState))
       toObject:NSUserDefaultsController.sharedUserDefaultsController
    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdEnabled]
        options:nil];
+    [self bind:NSStringFromSelector(@selector(keyTimeOut))
+      toObject:NSUserDefaultsController.sharedUserDefaultsController
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdKeyTimeOut]
+       options:nil];
+    [self bind:NSStringFromSelector(@selector(clearKeysOnSleep))
+      toObject:NSUserDefaultsController.sharedUserDefaultsController
+   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearTouchIdKeysOnSleep]
+       options:nil];
   }
   return self;
+}
+
+- (void)dealloc {
+  [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self];
 }
 
 - (void)setTouchIdEnabledState:(MPTouchIDKeyStorage)touchIdEnabledState {
@@ -48,17 +64,45 @@
       break;
     case MPTouchIDKeyStoragePersistent:
       // clear transient store
-      [self.keys removeAllObjects];
+      [self _clearTransientCompositeKeyData];
       break;
     default:
       // clear persitent and transient store
       [self _clearPersistenCompositeKeyData];
-      [self.keys removeAllObjects];
+      [self _clearTransientCompositeKeyData];
   }
   _touchIdEnabledState = touchIdEnabledState;
 }
 
+- (void)setClearKeysOnSleep:(BOOL)clearKeysOnSleep {
+  if(_clearKeysOnSleep == clearKeysOnSleep) {
+    return;
+  }
+  _clearKeysOnSleep = clearKeysOnSleep;
+  if(_clearKeysOnSleep) {
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserver:self
+                                                       selector:@selector(_clearStoredCompositeKeysForNotification:)
+                                                           name:NSWorkspaceWillSleepNotification
+                                                         object:nil];
+  }
+  else {
+    [NSWorkspace.sharedWorkspace.notificationCenter removeObserver:self name:NSWorkspaceWillSleepNotification object:nil];
+  }
+}
+
+- (void)clearStoredCompositeKeys {
+  [self _clearPersistenCompositeKeyData];
+  [self _clearTransientCompositeKeyData];
+}
+
+- (void)_clearStoredCompositeKeysForNotification:(NSNotification *)notification {
+  [self clearStoredCompositeKeys];
+}
+
 - (void)saveCompositeKey:(KPKCompositeKey *)compositeKey forDocumentKey:(NSString *)documentKey {
+  if(documentKey.length == 0) {
+    return;
+  }
   NSError *error;
   NSData *encryptedCompositeKey = [self encryptedDataForCompositeKey:compositeKey error:&error];
   if(!encryptedCompositeKey) {
@@ -66,22 +110,25 @@
     return;
   }
 
+  /* The date the password was entered is what the timeout is measured against */
+  NSDate *storageDate = NSDate.date;
   switch(self.touchIdEnabledState) {
     case MPTouchIDKeyStorageTransient:
       [self _clearPersistenCompositeKeyData];
       if(nil != encryptedCompositeKey) {
         self.keys[documentKey] = encryptedCompositeKey;
+        self.keyDates[documentKey] = storageDate;
       }
       break;
     case MPTouchIDKeyStoragePersistent:
-      self.keys[documentKey] = nil;
+      [self _clearTransientCompositeKeyDataForDocumentKey:documentKey];
       if(nil != encryptedCompositeKey) {
-        [self _persistCompositeKeyData:encryptedCompositeKey forDocumentKey:documentKey];
+        [self _persistCompositeKeyData:encryptedCompositeKey date:storageDate forDocumentKey:documentKey];
       }
       break;
     case MPTouchIDKeyStorageDisabled:
       [self _clearPersistenCompositeKeyData];
-      self.keys[documentKey] = nil;
+      [self _clearTransientCompositeKeyDataForDocumentKey:documentKey];
       break;
     default:
       NSAssert(NO,@"Unsupported internal touchID preferences value.");
@@ -89,9 +136,21 @@
   }
 }
 - (NSData *)loadEncryptedCompositeKeyForDocumentKey:(NSString *)documentKey {
+  if(documentKey.length == 0) {
+    return nil;
+  }
   NSInteger touchIdMode = [NSUserDefaults.standardUserDefaults integerForKey:kMPSettingsKeyTouchIdEnabled];
   NSData* transientKey  = self.keys[documentKey];
   NSData* persistentKey = [self _persitentCompositeKeyDataForDocumentKey:documentKey];
+  /* Drop timed out keys instead of handing them out. The user has to supply the password again */
+  if(nil != transientKey && [self _isTimedOutDate:self.keyDates[documentKey]]) {
+    [self _clearTransientCompositeKeyDataForDocumentKey:documentKey];
+    transientKey = nil;
+  }
+  if(nil != persistentKey && [self _isTimedOutDate:[self _persistentDateForDocumentKey:documentKey]]) {
+    [self _clearPersistentCompositeKeyDataForDocumentKey:documentKey];
+    persistentKey = nil;
+  }
   if(nil == transientKey && nil == persistentKey) {
     return nil;
   }
@@ -102,6 +161,19 @@
     return persistentKey;
   }
   return transientKey;
+}
+
+- (BOOL)_isTimedOutDate:(NSDate *)date {
+  NSUInteger timeOut = self.keyTimeOut;
+  if(0 == timeOut) {
+    return NO; // no timeout configured, keys are kept until they are cleared otherwise
+  }
+  /* Keys stored before this setting existed carry no date. Without one we cannot tell
+     whether they are still inside the timeout, so they are treated as timed out. */
+  if(![date isKindOfClass:NSDate.class]) {
+    return YES;
+  }
+  return (-date.timeIntervalSinceNow >= (NSTimeInterval)timeOut);
 }
 
 - (KPKCompositeKey *)compositeKeyForEncryptedKeyData:(NSData *)data error:(NSError *__autoreleasing  _Nullable *)error {
@@ -254,20 +326,57 @@
   return [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyTouchIdEncryptedKeyStore][key];
 }
 
-- (void)_persistCompositeKeyData:(NSData *)data forDocumentKey:(NSString *)key {
+- (NSDate *)_persistentDateForDocumentKey:(NSString *)key {
+  if(key.length == 0) {
+    return nil;
+  }
+  return [NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyTouchIdKeyDateStore][key];
+}
+
+- (void)_persistCompositeKeyData:(NSData *)data date:(NSDate *)date forDocumentKey:(NSString *)key {
   if(data.length == 0 || key.length == 0) {
     return;
   }
-  NSMutableDictionary *dict = [[NSUserDefaults.standardUserDefaults objectForKey:kMPSettingsKeyTouchIdEncryptedKeyStore] mutableCopy];
-  if(nil == dict) {
-    dict = [[NSMutableDictionary alloc] init];
-  }
-  dict[key] = data;
-  [NSUserDefaults.standardUserDefaults setObject:[dict copy] forKey:kMPSettingsKeyTouchIdEncryptedKeyStore];
+  [self _updatePersistentStoreForKey:kMPSettingsKeyTouchIdEncryptedKeyStore documentKey:key value:data];
+  [self _updatePersistentStoreForKey:kMPSettingsKeyTouchIdKeyDateStore documentKey:key value:date];
 }
 
 - (void)_clearPersistenCompositeKeyData {
   [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyTouchIdEncryptedKeyStore];
+  [NSUserDefaults.standardUserDefaults removeObjectForKey:kMPSettingsKeyTouchIdKeyDateStore];
+}
+
+- (void)_clearPersistentCompositeKeyDataForDocumentKey:(NSString *)key {
+  if(key.length == 0) {
+    return;
+  }
+  [self _updatePersistentStoreForKey:kMPSettingsKeyTouchIdEncryptedKeyStore documentKey:key value:nil];
+  [self _updatePersistentStoreForKey:kMPSettingsKeyTouchIdKeyDateStore documentKey:key value:nil];
+}
+
+- (void)_updatePersistentStoreForKey:(NSString *)settingsKey documentKey:(NSString *)key value:(id)value {
+  NSMutableDictionary *dict = [[NSUserDefaults.standardUserDefaults objectForKey:settingsKey] mutableCopy];
+  if(nil == dict) {
+    if(nil == value) {
+      return;
+    }
+    dict = [[NSMutableDictionary alloc] init];
+  }
+  dict[key] = value;
+  [NSUserDefaults.standardUserDefaults setObject:[dict copy] forKey:settingsKey];
+}
+
+- (void)_clearTransientCompositeKeyData {
+  [self.keys removeAllObjects];
+  [self.keyDates removeAllObjects];
+}
+
+- (void)_clearTransientCompositeKeyDataForDocumentKey:(NSString *)key {
+  if(key.length == 0) {
+    return;
+  }
+  [self.keys removeObjectForKey:key];
+  [self.keyDates removeObjectForKey:key];
 }
 
 @end

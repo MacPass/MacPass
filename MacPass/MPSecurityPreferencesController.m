@@ -56,6 +56,14 @@
                      toObject:NSUserDefaultsController.sharedUserDefaultsController
                   withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyIdleLockTimeOut]
                       options:nil];
+  [self.touchIdKeyTimeOutPopup bind:NSSelectedTagBinding
+                           toObject:NSUserDefaultsController.sharedUserDefaultsController
+                        withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyTouchIdKeyTimeOut]
+                            options:nil];
+  [self.clearTouchIdKeysOnSleepCheckButton bind:NSValueBinding
+                                       toObject:NSUserDefaultsController.sharedUserDefaultsController
+                                    withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyClearTouchIdKeysOnSleep]
+                                        options:nil];
   [self.rememberKeyFileCheckButton bind:NSValueBinding
                                toObject:NSUserDefaultsController.sharedUserDefaultsController
                             withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyRememberKeyFilesForDatabases]

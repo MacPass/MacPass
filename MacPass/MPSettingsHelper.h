@@ -25,6 +25,9 @@
 /* TouchID */
 APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEnabled;
 APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore;       // NSDictionary with hased file names mapped to keys
+APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdKeyDateStore;            // NSDictionary with hased file names mapped to the date the key was stored
+APPKIT_EXTERN NSString *const kMPSettingsKeyTouchIdKeyTimeOut;              // Seconds a stored key stays usable. 0 keeps keys until they are cleared otherwise
+APPKIT_EXTERN NSString *const kMPSettingsKeyClearTouchIdKeysOnSleep;        // YES if stored keys should be cleared when the computer goes to sleep
 
 /* Clipboard */
 APPKIT_EXTERN NSString *const kMPSettingsKeyPasteboardClearTimeout;
