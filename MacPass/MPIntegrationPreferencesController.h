@@ -41,6 +41,7 @@
 
 @property (strong) IBOutlet NSButton *sendCommandForControlCheckBox;
 @property (strong) IBOutlet NSButton *alwaysShowConfirmationBeforeAutotypeCheckBox;
+@property (strong) IBOutlet NSButton *soundOnNoAutotypeMatchCheckBox;
 /* Preview */
 @property (strong) IBOutlet NSButton *enableQuicklookCheckBox;
 

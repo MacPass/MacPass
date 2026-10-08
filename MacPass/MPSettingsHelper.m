@@ -65,6 +65,7 @@ NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey                          
 NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence                     = @"DefaultGlobalAutotypeSequence";
 NSString *const kMPSettingsKeyAutotypeMatchTitle                                = @"AutotypeMatchTitle";
 NSString *const kMPSettingsKeyAutotypeMatchURL                                  = @"AutotypeMatchURL";
+NSString *const kMPSettingsKeyGlobalAutotypeSoundOnNoMatch                       = @"GlobalAutotypeSoundOnNoMatch";
 NSString *const kMPSettingsKeyAutotypeMatchHost                                 = @"AutotypeMatchHost";
 NSString *const kMPSettingsKeyAutotypeMatchTags                                 = @"AutotypeMatchTags";
 NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection        = @"GloablAutotypeAlwaysShowCandidateSelection";
@@ -165,6 +166,7 @@ NSString *const kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  
       kMPSettingsKeyDefaultGlobalAutotypeSequence: @"{USERNAME}{TAB}{PASSWORD}{ENTER}",
       kMPSettingsKeyAutotypeMatchTitle: @YES,
       kMPSettingsKeyAutotypeMatchURL: @NO,
+      kMPSettingsKeyGlobalAutotypeSoundOnNoMatch: @YES,
       kMPSettingsKeyAutotypeMatchHost: @NO,
       kMPSettingsKeyAutotypeMatchTags: @NO,
       kMPSettingsKeyEnableQuicklookPreview: @NO,
