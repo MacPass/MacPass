@@ -273,6 +273,10 @@ static MPAutotypeDaemon *_sharedInstance;
     }
     else {
       notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@", "Noticiation: Autotype failed to find a match for %@ (string placeholder)"), env.windowTitle];
+      if([NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyGlobalAutotypeSoundOnNoMatch]) {
+        // Give feedback even when notification banners are disabled.
+        NSBeep();
+      }
     }
     [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
   }

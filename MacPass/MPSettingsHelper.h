@@ -76,6 +76,7 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeKeyDataKey;           
 APPKIT_EXTERN NSString *const kMPSettingsKeyDefaultGlobalAutotypeSequence;              // Default sequence used for Autotype
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTitle;                         // Autotype lookup includes entry title
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchURL;                           // Autotype lookup includes entry URL
+APPKIT_EXTERN NSString *const kMPSettingsKeyGlobalAutotypeSoundOnNoMatch;              // Play an alert when global Autotype finds no matching entry
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchHost;                          // Autotype lookup includes host part of entry URL
 APPKIT_EXTERN NSString *const kMPSettingsKeyAutotypeMatchTags;                          // Autotype lookup includes tags for entries
 APPKIT_EXTERN NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection; // If YES, will always display then candidate selection window befor perfoming an Autotype
