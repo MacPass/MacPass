@@ -9,6 +9,7 @@
 #import "NSRunningApplication+MPAdditions.h"
 
 #import <AppKit/AppKit.h>
+#import <ApplicationServices/ApplicationServices.h>
 
 NSString *const MPWindowIDKey = @"MPWindowIDKey";
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
@@ -26,6 +27,36 @@ BOOL skipWindowTitle(NSString *windowTitle) {
   });
   
   return [titlesToSkip containsObject:windowTitle];
+}
+
+static NSString *focusedAccessibilityWindowTitle(pid_t pid) {
+  if(!AXIsProcessTrusted()) {
+    return nil;
+  }
+
+  AXUIElementRef application = AXUIElementCreateApplication(pid);
+  // An unresponsive target must not stall the global shortcut indefinitely.
+  AXUIElementSetMessagingTimeout(application, 0.5);
+  CFTypeRef window = NULL;
+  AXError error = AXUIElementCopyAttributeValue(application, kAXFocusedWindowAttribute, &window);
+  CFRelease(application);
+  if(error != kAXErrorSuccess || !window) {
+    if(window) {
+      CFRelease(window);
+    }
+    return nil;
+  }
+  if(CFGetTypeID(window) != AXUIElementGetTypeID()) {
+    CFRelease(window);
+    return nil;
+  }
+
+  AXUIElementSetMessagingTimeout((AXUIElementRef)window, 0.5);
+  CFTypeRef title = NULL;
+  error = AXUIElementCopyAttributeValue((AXUIElementRef)window, kAXTitleAttribute, &title);
+  CFRelease(window);
+  id value = CFBridgingRelease(title);
+  return error == kAXErrorSuccess && [value isKindOfClass:NSString.class] ? value : nil;
 }
 
 @implementation NSRunningApplication (MPAdditions)
@@ -54,6 +85,18 @@ BOOL skipWindowTitle(NSString *windowTitle) {
           MPProcessIdentifierKey : processId
         };
       }
+    }
+  }
+  if(infoDict.count > 0) {
+    // WindowServer can ellipsize Chrome titles, including the hostname used for
+    // Auto-Type matching. Accessibility exposes the full focused window title.
+    // Keep the CG window ID for the candidate preview and fall back to its title
+    // when the target does not expose a usable Accessibility title.
+    NSString *title = focusedAccessibilityWindowTitle(self.processIdentifier);
+    if(!skipWindowTitle(title)) {
+      NSMutableDictionary *fullInfo = [infoDict mutableCopy];
+      fullInfo[MPWindowTitleKey] = title;
+      infoDict = fullInfo;
     }
   }
   if(currentWindows.count > 0 && infoDict.count == 0) {
