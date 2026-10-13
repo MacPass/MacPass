@@ -1,0 +1,898 @@
+/* Count of characters remaining in pickchars dialog */
+"%ld_CHARACTERS_TO_PICK_REMAINING" = "%ld نویسه برای انتخاب باقی مانده";
+
+/* Display format for days. Should contain a long decimal placeholder! */
+"%ld_DAYS" = "%ld روز";
+
+/* % days ago */
+"%ld_DAYS_AGO" = "%ld روز پیش";
+
+/* % Hours ago */
+"%ld_HOURS_AGO" = "حدود %ld ساعت پیش";
+
+/* % Minutes ago */
+"%ld_MINUTES_AGO" = "%ld دقیقه پیش";
+
+/* % Weeks ago */
+"%ld_WEEKS_AGO" = "%ld هفته پیش";
+
+/* preset to expire after 90 days from now */
+"90_DAYS" = "۹۰ روز دیگر";
+
+/* Button label to abort a merge on a file with changed master key! */
+"ABORT_MERGE_KEEP_MINE" = "لغو ادغام. حفظ نسخهٔ من.";
+
+/* Toolbar item with action menu */
+"ACTION" = "عملیات";
+
+/* Menu displayed for adding special custom keys */
+"ADD_CUSTOM_FIELD_CONTEXT_MENU" = "منوی افزودن فیلد سفارشی";
+
+/* Action to add an entry via template */
+"ADD_TREMPLATE_ENTRY" = "ایجاد مدخل از الگو";
+
+/* Allow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_ALLOW_DOWNLOAD" = "به‌روزرسانی آنلاین تعاریف";
+
+/* Informative text displayed on the alert that shows up when MacPass asks for permssion to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "تعاریف افزونه به صورت آنلاین در \U2068https://macpass.app\U2069 میزبانی می‌شوند. MacPass مایل است این فایل‌ها را دانلود کند تا از به‌روز بودن داده‌ها اطمینان حاصل شود.";
+
+/* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "به‌روزرسانی‌های تعاریف افزونه را MacPass مایل است به صورت آنلاین بررسی کند";
+
+/* Disallow the download of the plugin repository file */
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "عدم به‌روزرسانی تعاریف";
+
+/* Button in dialog to leave plugin ds disabled and continiue! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OK" = "تأیید";
+
+/* Button in dialog to open plugin preferences pane! */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_BUTTON_OPEN_PREFERENCES" = "نمایش تنظیمات افزونه…";
+
+/* Informative text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_INFORMATIVE_TEXT" = "برخی از افزونه‌ها غیرفعال شدند زیرا با این نسخه از MacPass سازگار نیستند. برای جزئیات بیشتر، تنظیمات افزونه را باز کنید.";
+
+/* Message text of the alert displayed when plugins where disabled due to incompatibilty */
+"ALERT_INCOMPATIBLE_PLUGINS_ENCOUNTERED_MESSAGE" = "افزونه‌های ناسازگار شناسایی شدند.";
+
+/* Alert informative text when plugins or their settings change and require a restart */
+"ALERT_INFORMATIVE_TEXT_PLUGINS_CHANGED_SUGGEST_RESTART" = "تغییرات در افزونه‌ها و تنظیمات سراسری افزونه تنها پس از راه‌اندازی مجدد اعمال می‌شوند. آیا MacPass اکنون مجدداً راه‌اندازی شود؟";
+
+/* Alert informative text to ask the user if he really want to uninstall the plugin */
+"ALERT_INFORMATIVE_TEXT_REALLY_UNINSTALL_PLUGIN" = "افزونه به سطل زباله منتقل خواهد شد.";
+
+/* Button in dialog to cancel merge of KDB file changes! */
+"ALERT_MERGE_CANCEL" = "لغو";
+
+/* Button in dialog to merge KDB changes into file! */
+"ALERT_MERGE_CONTINUE" = "ادغام فایل‌ها!";
+
+/* Informative text displayed when merging KDB files */
+"ALERT_MERGE_KDB_FILE_INFO_TEXT" = "پایگاه‌های دادهٔ KDB حاوی اطلاعات کافی برای ادغام بی‌نقص نیستند. مدخل‌ها ادغام خواهند شد و هیچ داده‌ای از دست نخواهد رفت. اما از آنجا که گروه‌ها فقط بر اساس نام تطبیق داده می‌شوند، ممکن است تغییرات غیرمنتظره‌ای رخ دهد. ممکن است مدخل‌های جابه‌جا شده به گروه قبلی خود بازگردند، یا گروه‌های تغییرنام‌یافته ادغام نشوند. همچنین ممکن است مدخل‌های حذف‌شده به دلیل ذخیره نشدن اطلاعات مربوط به اشیاء حذف‌شده دوباره ظاهر شوند. آیا مطمئن هستید که می‌خواهید ادامه دهید؟";
+
+/* Alert message warning user about KDB file merge */
+"ALERT_MERGE_KDB_FILE_MESSAGE" = "شما در حال ادغام یک پایگاه دادهٔ KDB هستید";
+
+/* Alert message text when plugins or their settings change and require a restart */
+"ALERT_MESSAGE_PLUGINS_CHANGED_SUGGEST_RESTART" = "تنظیمات افزونه تغییر کرد. لطفاً برنامه را مجدداً راه‌اندازی کنید.";
+
+/* Alert message text to ask the user if he really want to uninstall the plugin. Include %@ placeholder for plugin name */
+"ALERT_MESSAGE_TEXT_REALLY_UNINSTALL_PLUGIN_%@" = "آیا افزونهٔ %@ واقعاً حذف نصب شود؟";
+
+/* Informative text of the disabled updates alert! */
+"ALERT_UPDATES_DISABLED_INFORMATIVE_TEXT_%@!" = "به‌روزرسانی‌ها برای این ساخت از %@ غیرفعال هستند!";
+
+/* Message text for disabled updates alert! */
+"ALERT_UPDATES_DISABLED_MESSAGE_TEXT" = "به‌روزرسانی‌ها غیرفعال هستند!";
+
+/* Attachments column title (shows counts)
+   Menu item to toggle display of attachment count column in entry table */
+"ATTACHMENTS" = "پیوست‌ها";
+
+/* Sucessfully merged external changes */
+"AUTO_MERGE_NOTIFICATION_TEXT" = "ادغام خودکار با موفقیت انجام شد!";
+
+/* Menu item for automatic trash creation */
+"AUTOCREATE_TRASH_FOLDER" = "ایجاد خودکار";
+
+/* Message text in the autotype confirmation window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_CONFIRMATION_WINDOW_MESSAGE_%@_%@" = "تایپ خودکار موردی منطبق برای پنجرهٔ \"%2$@\" از برنامهٔ \"%1$@\" پیدا کرده است. لطفاً برای ادامهٔ اجرا تأیید کنید.";
+
+/* Message text in the autotype selection window. Placeholder is %1 - applicationName, %2 windowTitle */
+"AUTOTYPE_CANDIDATE_SELECTION_WINDOW_MESSAGE_%@_%@" = "برای پنجرهٔ \"%2$@\" از برنامهٔ \"%1$@\" چند مورد منطبق وجود دارد. لطفاً موردی را که باید استفاده شود انتخاب کنید.";
+
+/* Window title for the stand-alone password creator window */
+"AUTOTYPE_DOCTOR_RESULTS_WINDOW_TITLE" = "عیب‌یاب تایپ خودکار";
+
+/* Inherit autotype settings menu item */
+"AUTOTYPE_INHERIT" = "ارث‌بری تنظیمات تایپ خودکار";
+
+/* Message displayed to the user to unlock the database to perform global autotype */
+"AUTOTYPE_MESSAGE_UNLOCK_DATABASE" = "لطفاً برای استفاده از تایپ خودکار سراسری، قفل پایگاه داده را باز کنید";
+
+/* Disable autotype menu item */
+"AUTOTYPE_NO" = "غیرفعال کردن تایپ خودکار";
+
+/* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "تمام مجوزهای لازم برای اجرای تایپ خودکار به MacPass داده نشده است.";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "تایپ خودکار";
+
+/* Notification: Autotype failed, no documents are open */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_INFORMATIVE_TEXT" = "لطفاً برای استفاده از تایپ خودکار سراسری، یک فایل پایگاه داده را باز کنید!";
+
+/* Notification: Title for autotype feedback */
+"AUTOTYPE_NOTIFICATION_NO_DOCUMENTS_TITLE" = "هیچ پایگاه داده‌ای باز نیست!";
+
+/* Noticiation: Autotype failed to find a match for %@ (string placeholder) */
+"AUTOTYPE_NOTIFICATION_NO_MATCH_FOR_%@" = "مورد منطبقی برای %@ یافت نشد!";
+
+/* Title for autotype feedback on missing permissions */
+"AUTOTYPE_NOTIFICATION_PERMISSIONS_MISSING_TITLE" = "مجوزهای لازم وجود ندارد";
+
+/* Notification: Autotype found a single match for %@ (string placeholder). */
+"AUTOTYPE_NOTIFICATION_SINGLE_MATCH_FOR_%@" = "مورد منطبق برای %@ یافت شد!";
+
+/* Title for the notification when the Autotype operation timed out */
+"AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "مهلت زمانی تایپ خودکار به پایان رسید!";
+
+/* Status label when no issue were found in accessibilty */
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "مجوز کنترل رایانهٔ شما به MacPass داده شده است (Accessibility)";
+
+/* Status MacPass has no accessibilty permissions */
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "مجوزی برای کنترل رایانهٔ شما به MacPass داده نشده است (Accessibility)";
+
+/* Status MacPass has no screen recording permissions */
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "مجوزی برای ضبط صفحهٔ نمایش شما به MacPass داده نشده است";
+
+/* Status label when no issue were found in screen recording permissions */
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "مجوز ضبط صفحهٔ نمایش شما به MacPass داده شده است";
+
+/* Notficication: Autotype timed out */
+"AUTOTYPE_TIMED_OUT" = "زمان زیادی از شروع تایپ خودکار گذشته است. MacPass برای جلوگیری از هرگونه ورودی اشتباه، آن را اجرا نکرد!";
+
+/* Enable autotype menu item */
+"AUTOTYPE_YES" = "فعال‌سازی تایپ خودکار";
+
+/* Cancel */
+"CANCEL" = "لغو";
+
+/* Menu item in the database outline context menu to change the database name */
+"CHANGE_DATABASE_NAME" = "تغییر نام پایگاه داده";
+
+/* Button to postpone the password change */
+"CHANGE_LATER" = "تغییر در آینده";
+
+/* Button to show the password change dialog
+   Single button to show the password change dialog */
+"CHANGE_PASSWORD_WITH_DOTS" = "تغییر گذرواژه…";
+
+/* Menu item in the database outline context menu to change the trash group */
+"CHANGE_TRASH_GROUP" = "تغییر گروه سطل زباله";
+
+/* Button title in the key file selection dialog for selecting a key */
+"CHOOSE_FILE_BUTTON_TITLE" = "باز کردن";
+
+/* Clear Autotype Button */
+"CLEAR_AUTOTYPE" = "پاک کردن تایپ خودکار";
+
+/* Menu to clear recent searches */
+"CLEAR_RECENT_SEARCHES" = "پاک کردن جستجوهای اخیر";
+
+/* String displayed at dock badge when clipboard is about to be cleared */
+"CLEARING_PASTEBOARD" = "پاک شد";
+
+/* Field name that was copied to the pasteboard */
+"COPIED_FIELD_%@" = "%@ کپی شد";
+
+/* Context menu that copies reference to note */
+"COPIED_NOTES_REFERENCE" = "ارجاع به یادداشت‌ها کپی شد!";
+
+/* Password was copied to the pasteboard */
+"COPIED_PASSWORD" = "گذرواژه کپی شد!";
+
+/* Context menu that copies reference to password */
+"COPIED_PASSWORD_REFERENCE" = "ارجاع به گذرواژه کپی شد!";
+
+/* Context menu that copies reference to title */
+"COPIED_TITLE_REFERENCE" = "ارجاع به عنوان کپی شد!";
+
+/* URL was copied to the pasteboard */
+"COPIED_URL" = "نشانی کپی شد!";
+
+/* Context menu that copies reference to URL */
+"COPIED_URL_REFERENCE" = "ارجاع به نشانی کپی شد!";
+
+/* Username was copied to the pasteboard */
+"COPIED_USERNAME" = "نام کاربری کپی شد!";
+
+/* Context menu that copies reference to username */
+"COPIED_USERNAME_REFERENCE" = "ارجاع به نام کاربری کپی شد!";
+
+/* Button to copy the value of an Attribute
+   Copy the TOTP value to the clipboard */
+"COPY" = "کپی";
+
+/* Submenu to copy attributes as reference */
+"COPY_AS_REFERENCE" = "کپی ارجاع به…";
+
+/* Context menu sub-menu to copy attributes as reference */
+"COPY_AS_REFERENCE_MENU" = "منوی کپی به‌عنوان ارجاع";
+
+/* Submenu to Copy custom fields */
+"COPY_CUSTOM_FIELDS" = "کپی فیلدهای سفارشی";
+
+/* Context menu sub-menu to copy custom fields to clipboard */
+"COPY_CUSTOM_FIELDS_MENU" = "کپی فیلد سفارشی…";
+
+/* Action name when an entry was moved
+   Action title for copying an entry via drag and drop */
+"COPY_ENTRY" = "کپی مدخل";
+
+/* Mask for title to copy field value */
+"COPY_FIELD_%@" = "کپی %@";
+
+/* Action title for copying a group via drag and drop */
+"COPY_GROUP" = "کپی گروه";
+
+/* Context menu that copies reference to note */
+"COPY_NOTES_REFERENCE" = "یادداشت‌ها";
+
+/* Menu item to copy the password of an entry
+   Toolbar item copy password */
+"COPY_PASSWORD" = "کپی گذرواژه";
+
+/* Context menu that copies reference to password */
+"COPY_PASSWORD_REFERENCE" = "گذرواژه";
+
+/* Context menu that copies reference to title */
+"COPY_TITLE_REFERENCE" = "عنوان";
+
+/* Menu item to copy the URL of an entry */
+"COPY_URL" = "کپی نشانی";
+
+/* Context menu that copies reference to URL */
+"COPY_URL_REFERENCE" = "نشانی";
+
+/* Menu item to copy the username of an entry
+   Toolbar item copy username */
+"COPY_USERNAME" = "کپی نام کاربری";
+
+/* Context menu that copies reference to username */
+"COPY_USERNAME_REFERENCE" = "نام کاربری";
+
+/* Creating date column title
+   Menu item to toggle display of created date column in entry table */
+"CREATED" = "تاریخ ایجاد";
+
+/* Custom attribute reference item */
+"CUSTOM_ATTRIBUTE" = "ویژگی سفارشی";
+
+/* Title for menu for custom search filters */
+"CUSTOM_SEARCH_FILTER_MENU" = "فیلتر جستجوی سفارشی…";
+
+/* Default display name for KDB databases */
+"DATABASE" = "پایگاه داده";
+
+/* Default Browser */
+"DEFAULT_BROWSER" = "مرورگر پیش‌فرض";
+
+/* Default Titel for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_TITLE" = "سفارشی";
+
+/* Default Value for new Custom-Fields */
+"DEFAULT_CUSTOM_FIELD_VALUE" = "مقدار";
+
+/* Title for a newly created entry */
+"DEFAULT_ENTRY_TITLE" = "مدخل جدید";
+
+/* Title for a newly created group */
+"DEFAULT_GROUP_NAME" = "گروه جدید";
+
+/* Default window title for a new window association */
+"DEFAULT_WINDOW_TITLE" = "عنوان پنجره";
+
+/* Menu item in the database outline context menu to delete the node from the trash
+   Menu item to delete an entry
+   Menu item to delete the selected attached file
+   Menu item to delete the selected custom icon
+   Toolbar item delete item */
+"DELETE" = "حذف";
+
+/* Delete Entry */
+"DELETE_ENTRY" = "حذف مدخل";
+
+/* Delete Group */
+"DELETE_GROUP" = "حذف گروه";
+
+/* Empty Trash */
+"DELETE_TRASHED_ENTRY" = "حذف مدخل سطل زباله";
+
+/* Empty Trash */
+"DELETE_TRASHED_GROUP" = "حذف گروه سطل زباله";
+
+/* Action title for copying an entry via drag and drop to another database
+   Action title for moving an entry via drag and drop */
+"DRAG_ENTRY" = "کشیدن مدخل";
+
+/* Action title for moving a group via drag and drop
+   Actiontitle for copying groups via drag and drop to antother database */
+"DRAG_GROUP" = "کشیدن گروه";
+
+/* Action name for duplicating entries */
+"DUPLICATE_ENTRIES_ACTION_NAME" = "تکثیر مدخل‌ها";
+
+/* Menu item to directly diplicate an entry */
+"DUPLICATE_ENTRY" = "تکثیر مدخل";
+
+/* Menu item to duplicate an entry with options how to duplicate. Will present a dialog. */
+"DUPLICATE_ENTRY_WITH_OPTIONS" = "تکثیر مدخل…";
+
+/* Menu item to directly diplicate a group */
+"DUPLICATE_GROUP" = "تکثیر گروه";
+
+/* Action name for duplicating groups */
+"DUPLICATE_GROUPS_ACTION_NAME" = "تکثیر گروه";
+
+/* Menu item in the database outline context menu to change the template group
+   Menu item on the add entry context menu to edit template groups */
+"EDIT_TEMPLATE_GROUP" = "ویرایش گروه الگوی مدخل";
+
+/* Empty Trash
+   Menu item in the database outline context menu to empyt the trash
+   Menu item in the database outline to empty the trash
+   Menu item to empty the trash */
+"EMPTY_TRASH" = "خالی کردن سطل زباله";
+
+/* Informative text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "تا زمانی که گذرواژه و/یا فایل کلید تغییر داده نشود، امکان ذخیره وجود نخواهد داشت.";
+
+/* Message text for the enforce password change alert */
+"ENFORCE_PASSWORD_CHANGE_ALERT_TITLE" = "گذرواژهٔ پایگاه داده منقضی شده است!";
+
+/* Group row for entry attributes */
+"ENTRY_CUSTOM_ATTRIBUTES" = "ویژگی‌های سفارشی";
+
+/* Group row for entry attributes */
+"ENTRY_DEFAULT_ATTRIBUTES" = "ویژگی‌های پیش‌فرض";
+
+/* Tooltip displayed on the index header cell */
+"ENTRY_INDEX_COLUMN_TOOLTIP" = "ستون مرتب‌سازی بر اساس ترتیب تعریف‌شده توسط کاربر";
+
+/* Keyfile not valid */
+"ERROR_INVALID_KEYFILE" = "فایل کلید نامعتبر است!";
+
+/* Error description given when adding an invalid plugin */
+"ERROR_INVALID_PLUGIN" = "افزونهٔ نامعتبر";
+
+/* Error description for missing accessibility permissions */
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "اجازهٔ کنترل رایانهٔ شما به MacPass داده نشده است (Accessibility)";
+
+/* Error description for missing screen recording permissions */
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "اجازهٔ ضبط صفحهٔ نمایش شما به MacPass داده نشده است";
+
+/* Passwords do not match */
+"ERROR_PASSWORD_MISSMATCH" = "گذرواژه‌ها مطابقت ندارند!";
+
+/* Recommend/Enforce key change intervall format */
+"EVERY_%ld_DAYS" = "هر %ld روز";
+
+/* Format to returen the date an item expires. Includes %@ placehoder for date */
+"EXPIRES_AT_DATE_%@" = "تاریخ انقضا: %@";
+
+/* The master key was changed by an external program! */
+"EXTERN_CHANGE_OF_MASTERKEY" = "کلید اصلی توسط برنامهٔ دیگری تغییر داده شده است";
+
+/* Direct download */
+"FAVICON_DOWNLOAD_METHOD_DIRECT" = "دانلود مستقیم";
+
+/* DuckDuckGo */
+"FAVICON_DOWNLOAD_METHOD_DUCKDUCKGO" = "DuckDuckGo";
+
+/* Google */
+"FAVICON_DOWNLOAD_METHOD_GOOGLE" = "Google";
+
+/* External file change strategy option: ask what to do */
+"FILE_CHANGE_STRATEGY_ASK" = "پرسش";
+
+/* External file change strategy option: Keep local file an ignore external changes */
+"FILE_CHANGE_STRATEGY_KEEP_MINE" = "نگه‌داشتن نسخهٔ من و نادیده گرفتن سایر تغییرات";
+
+/* Button in dialog to merge changes into file!
+   External file change strategy option: Merge external changes into local file. */
+"FILE_CHANGE_STRATEGY_MERGE" = "ادغام تغییرات";
+
+/* External file change strategy option: Use the changed file and discard local changes */
+"FILE_CHANGE_STRATEGY_USE_OTHER" = "بارگذاری نسخهٔ تغییریافته و صرف‌نظر از نسخهٔ من";
+
+/* Informative text displayed when the file was change from another application */
+"FILE_CHANGED_BY_OTHERS_INFO_TEXT" = "پایگاه دادهٔ بارگذاری‌شده با نسخهٔ روی دیسک یکسان نیست. مایلید چگونه ادامه دهید؟";
+
+/* Message displayed when an open file was changed from another application */
+"FILE_CHANGED_BY_OTHERS_MESSAGE_TEXT" = "فایل پایگاه داده تغییر یافته است!";
+
+/* Error while reopening last known documents */
+"FILE_OPEN_ERROR" = "خطا در باز کردن فایل.";
+
+/* General Settings Label */
+"GENERAL_PREFERENCES" = "عمومی";
+
+/* Group column title */
+"GROUP" = "گروه";
+
+/* SHA 1 hash algoritm menu item */
+"HASH_SHA1" = "Sha1";
+
+/* SHA 256 hash algoritm menu item */
+"HASH_SHA256" = "Sha256";
+
+/* SHA 512 hash algoritm menu item */
+"HASH_SHA512" = "Sha512";
+
+/* History count column title
+   Menu item to toggle display of history count column in entry table */
+"HISTORY" = "تاریخچه";
+
+/* Imports a dragged URL for a new entry */
+"IMPORT_URL" = "درون‌ریزی نشانی";
+
+/* Toolbar item toggle inspector */
+"INSPECTOR" = "بازبین";
+
+/* Label for the integration settings tab */
+"INTEGRATION_SETTINGS" = "یکپارچه‌سازی";
+
+/* Just now */
+"JUST_NOW" = "همین حالا";
+
+/* Feature only available in kdbx databases */
+"KDBX_ONLY_FEATURE" = "این قابلیت در پایگاه دادهٔ KDB پشتیبانی نمی‌شود";
+
+/* Button in dialog to ignore the changes to an open file! */
+"KEEP_MINE_DISCARD_OTHER" = "نگه‌داشتن نسخهٔ من، صرف‌نظر از دیگری";
+
+/* Button in dialog to reopen the file! */
+"KEEP_OTHER_DISCARD_MINE" = "نگه‌داشتن نسخهٔ دیگر، صرف‌نظر از نسخهٔ من";
+
+/* Do not install the plugin */
+"KEEP_PLUGIN" = "نگه‌داشتن افزونه";
+
+/* Do not restart MacPass */
+"KEEP_RUNNING" = "ادامهٔ اجرا";
+
+/* last week */
+"LAST_WEEK" = "هفتهٔ گذشته";
+
+/* Toolbar item to Lock the database */
+"LOCK" = "قفل کردن";
+
+/* Message in the open panel to add attachments to an entry */
+"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL" = "فایل مورد نظر برای پیوست را انتخاب کنید";
+
+/* Message in the add plugin open panel */
+"MESSAGE_ADD_PLUGIN_OPEN_PANEL" = "افزونهٔ مورد نظر برای نصب را انتخاب کنید";
+
+/* Message in the open panel to import an XML file */
+"MESSAGE_XML_OPEN_PANEL" = "فایل XML مورد نظر برای درون‌ریزی را انتخاب کنید";
+
+/* Menu item to toggle display of modified date column in entry table
+   Modification date column title */
+"MODIFIED" = "تاریخ ویرایش";
+
+/* Action name when an entry was moved */
+"MOVE_ENTRY" = "انتقال مدخل";
+
+/* Menu displayed as popup selection for search options when multiple items are selected */
+"MULTIPLE_FILTERS_ACTIVE_WITH_DOTS" = "چندگانه…";
+
+/* Name for a newly created Database */
+"NEW_DATABASE" = "پایگاه داده";
+
+/* Action name for a newly created entry
+   Menu item to create a new entry
+   Toolbar item new entry */
+"NEW_ENTRY" = "مدخل جدید";
+
+/* Submen to create entries from tempaltes */
+"NEW_ENTRY_FROM_TEMPLATE" = "مدخل جدید…";
+
+/* Submenu to add an entry via template */
+"NEW_ENTRY_WITH_TEMPLATE_%@" = "از %@";
+
+/* Action name for a newly created group
+   Menu item to create a new group
+   Toolbar item new group */
+"NEW_GROUP" = "گروه جدید";
+
+/* Expiration date format, when item does not expire */
+"NO_EXPIRE_DATE_SET" = "هرگز منقضی نمی‌شود.";
+
+/* Menu item to reset the template groups */
+"NO_TEMPLATE_GROUP" = "بدون الگو";
+
+/* Menu item added to show that no templates are defined */
+"NO_TEMPLATES" = "هیچ الگویی یافت نشد";
+
+/* Null placeholder for item input field
+   Placeholder text for input fields if no entry or group is selected */
+"NONE" = "هیچ‌کدام";
+
+/* Displayed name when notes or part of notes was copied
+   Menu item to toggle display of notes column in entry table
+   Notes column title
+   Notes reference item */
+"NOTES" = "یادداشت‌ها";
+
+/* Ok Button to dismiss disabled updates alert */
+"OK" = "تأیید";
+
+/* preset to expire after one montch from now */
+"ONE_MONTH" = "یک ماه دیگر";
+
+/* preset to expire after one week from now */
+"ONE_WEEK" = "یک هفتهٔ دیگر";
+
+/* one week ago */
+"ONE_WEEK_AGO" = "یک هفته پیش";
+
+/* preset to expire after one year from now */
+"ONE_YEAR" = "یک سال دیگر";
+
+/* Open button in the open panel to add attachments to an entry */
+"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL" = "پیوست کردن";
+
+/* Open button in the add plugin open panel */
+"OPEN_BUTTON_ADD_PLUGIN_OPEN_PANEL" = "نصب";
+
+/* Open button in the open panel to import an XML file */
+"OPEN_BUTTON_IMPORT_XML_OPEN_PANEL" = "درون‌ریزی";
+
+/* Action button in Notification to open a document */
+"OPEN_DOCUMENT" = "باز کردن سند";
+
+/* Menu item to open the URL with the default application */
+"OPEN_URL" = "باز کردن نشانی";
+
+/* Select Browser */
+"OTHER_BROWSER" = "انتخاب مرورگر…";
+
+/* OTP custom type  */
+"OTP_CUSTOM" = "تنظیمات سفارشی";
+
+/* OTP type RFC  */
+"OTP_RFC" = "RFC 6238";
+
+/* OTP type Steam  */
+"OTP_STEAM" = "Steam";
+
+/* Value field for reference lookup */
+"OUTPUT_VALUE" = "مقدار خروجی";
+
+/* Menu item to toggle display of password column in entry table
+   Password column title
+   Password reference item */
+"PASSWORD" = "گذرواژه";
+
+/* Window title for the stand-alone password creator window */
+"PASSWORD_CREATOR_WINDOW_TITLE" = "سازندهٔ گذرواژه";
+
+/* Button to reset the password defaults for a single entry */
+"PASSWORD_GENERATOR_RESET_ENTRY_DEFAULTS" = "بازنشانی";
+
+/* Button to set the defaults of the password generator */
+"PASSWORD_GENERATOR_SET_DEFAULTS" = "تنظیم پیش‌فرض‌ها";
+
+/* Placeholder for the password field to aks for password
+   Placeholder in the unlock-password input field if password is enabled */
+"PASSWORD_INPUT_ENTER_PASSWORD" = "وارد کردن گذرواژه";
+
+/* Placeholder for the password input field if passwords are disabled
+   Placeholder for the repeat password input if passwords are disabled
+   Placeholder in the unlock-password input field if password is disabled */
+"PASSWORD_INPUT_NO_PASSWORD" = "بدون گذرواژه";
+
+/* Placeholder for the repeat password field to aks for the repeated password */
+"PASSWORD_INPUT_REPEAT_PASSWORD" = "تکرار گذرواژه";
+
+/* Menu item to perform autotype with the selected entry */
+"PERFORM_AUTOTYPE_FOR_ENTRY" = "انجام تایپ خودکار";
+
+/* Info about how many character has to pick in pickchar dialog */
+"PICKCHAR_INFO_MESSAGE_PICK_CHARACTERS_%ld" = "لطفاً %ld نویسه انتخاب کنید";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKCHAR_WINDOW_TITLE" = "انتخاب‌گر نویسه";
+
+/* Count of picked characters in pickchars dialog if no limit is set */
+"PICKED_%ld_CHARACTERS" = "%ld نویسه انتخاب شد";
+
+/* Window displayed to the user to pick an amout of characters */
+"PICKFIELD_WINDOW_TITLE" = "انتخاب‌گر فیلد";
+
+/* Label for the button when a download is in progress! */
+"PLUGIN_BROWSER_ACTION_DOWNLOAD_IN_PROGRESS" = "در حال دانلود…";
+
+/* Label for the button when a download did not succeed */
+"PLUGIN_BROWSER_ACTION_RETRY_FAILED_DOWNLOAD" = "ناموفق بود. دانلود مجدد";
+
+/* Label for the button to show a downloaded file */
+"PLUGIN_BROWSER_ACTION_SHOW_DOWNLOADED_FILE" = "نمایش در Finder…";
+
+/* Button to download the Plugin */
+"PLUGIN_BROWSER_DOWNLOAD_PLUGIN_BUTTON" = "دانلود";
+
+/* Status for an up-to-date plugin in the plugin browser */
+"PLUGIN_BROWSER_LATEST_VERSION_INSTALLED" = "آخرین نسخه نصب شده است";
+
+/* Status for an outdated plugin version in the plugin browser */
+"PLUGIN_BROWSER_NEWER_VERSION_%@_AVAILABLE" = "نسخهٔ جدیدتر (%@) موجود است.";
+
+/* Status for an uninstalled plugin in the plugin browser */
+"PLUGIN_BROWSER_PLUGIN_NOT_INSTALLED" = "نصب نشده";
+
+/* Status for an unkonw plugin version in the plugin browser */
+"PLUGIN_BROWSER_UNKNOWN_PLUGIN_VERSION_INSTALLED_%@" = "نسخهٔ ناشناختهٔ %@ نصب شده است";
+
+/* Error for a plugin that is disabled. */
+"PLUGIN_ERROR_DISABLED_PLUGIN" = "این افزونه توسط کاربر غیرفعال شده است";
+
+/* Plugin is not with this version of MacPass */
+"PLUGIN_ERROR_HOST_VERSION_NOT_SUPPORTED" = "این افزونه با این نسخه از MacPass سازگار نیست";
+
+/* The plugin could not be initalized */
+"PLUGIN_ERROR_INTILIZATION_FAILED" = "افزونه راه‌اندازی نشد";
+
+/* Error for a plugin that was not signed properly */
+"PLUGIN_ERROR_UNSECURE_PLUGIN" = "افزونه به‌درستی امضا نشده است";
+
+/* Plugin specifies the wrong principal class! */
+"PLUGIN_ERROR_WRONG_PRINCIPAL_CLASS" = "کلاس اصلی غیرمنتظره در افزونه";
+
+/* name for disabled unloaded plugin */
+"PLUGIN_NAME_DISABLED_%@" = "🚫 %@";
+
+/* Name for unloaded plugin with errors */
+"PLUGIN_NAME_ERROR_%@" = "⚠️ %@";
+
+/* Label for plugin settings tab */
+"PLUGIN_SETTINGS" = "افزونه‌ها";
+
+/* Generic message displayed if no details are know why a plugin was not loaded. */
+"PLUGIN_SETTINGS_GENERIC_ERROR_MESSAGE" = "افزونه بارگذاری نشد.";
+
+/* Plugin version. Include a %@ placeholder for version string */
+"PLUGIN_VERSION_%@" = "نسخه: %@";
+
+/* Menu item to preview the selected attached file. */
+"PREVIEW" = "پیش‌نمایش";
+
+/* Recent searches menu item */
+"RECENT_SEARCHES" = "جستجوهای اخیر";
+
+/* Informative text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_DESCRIPTION" = "توصیه می‌شود گذرواژه و/یا فایل کلید را تغییر دهید.";
+
+/* Message text for the recommend password change alert */
+"RECOMMEND_PASSWORD_CHANGE_ALERT_TITLE" = "لطفاً گذرواژهٔ پایگاه داده را تغییر دهید!";
+
+/* Updated at text when the local plugin defintino is used */
+"REPOSITORY_UPDATED_AT_LOCAL" = "هرگز (استفاده از نسخهٔ همراه برنامه)";
+
+/* Restart */
+"RESTART" = "راه‌اندازی مجدد";
+
+/* Action to restore an Entry to a previous state of its history */
+"RESTORE_HISTORY_ENTRY" = "بازیابی مدخل تاریخچه";
+
+/* Menu item to save the selected attached file.
+   Save file menu item title when save will just save the file */
+"SAVE" = "ذخیره";
+
+/* Button title to save the generated key file */
+"SAVE_KEYFILE" = "ذخیرهٔ فایل کلید";
+
+/* Save file menu item title when save will prompt for a location to save or ask for a password/key */
+"SAVE_WITH_DOTS" = "ذخیره…";
+
+/* Search input in Toolbar */
+"SEARCH" = "جستجو";
+
+/* Search option: Find duplicate passwords */
+"SEARCH_DUPLICATE_PASSWORDS" = "گذرواژه‌های تکراری";
+
+/* Placeholder string displayed in the search field in the toolbar */
+"SEARCH_EVERYWHERE" = "جستجو در همه‌جا";
+
+/* Search option: Find expired entries */
+"SEARCH_EXPIRED_ENTRIES" = "منقضی‌شده";
+
+/* Inherit search settings menu item */
+"SEARCH_INHERIT" = "ارث‌بری تنظیمات جستجو";
+
+/* Disable search menu item */
+"SEARCH_NO" = "مستثنی کردن از جستجو";
+
+/* Search field for references lookup */
+"SEARCH_VALUE" = "مقدار جستجو";
+
+/* Enable search menu item */
+"SEARCH_YES" = "گنجاندن در جستجو";
+
+/* Menu item title for the expiry preset selection menu in the date picker */
+"SELECT_DATE_PRESET" = "استفاده از پیش‌تنظیم…";
+
+/* Message on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_MESSAGE" = "مرورگر مورد نظر برای باز کردن نشانی را انتخاب کنید.";
+
+/* Label for the select browser button on the open panel for selecting which browser to use for opening URLs */
+"SELECT_DEFAULT_BROWSER_OPEN_PANEL_SELECT_BUTTON" = "انتخاب";
+
+/* Message for the dialog to open a file for merge */
+"SELECT_FILE_TO_MERGE" = "فایل مورد نظر برای ادغام را انتخاب کنید";
+
+/* Menu displayed as popup selection for search options if no filter is selected */
+"SELECT_FILTER_WITH_DOTS" = "انتخاب…";
+
+/* Checkbox in dialog to set the selection as default file change strategy! */
+"SET_AS_DEFAULT_FILE_CHANGE_STRATEGY" = "استفاده از این روش به‌عنوان پیش‌فرض. هر زمان می‌توانید این مورد را در تنظیمات تغییر دهید.";
+
+/* Menu item title editing TOTP settings */
+"SETUP_TOTP_SETTINGS" = "ویرایش تنظیمات گذرواژهٔ یک‌بارمصرف مبتنی بر زمان.";
+
+/* Action button in Notification to show the Autotype Doctor */
+"SHOW_AUTOTYPE_DOCTOR" = "نمایش عیب‌یاب تایپ خودکار";
+
+/* Menu item to toggle display type of passwords */
+"SHOW_CLEAR_TEXT_PASSWORDS" = "نمایش گذرواژه‌ها";
+
+/* Menu item to show the entries group in the outline view */
+"SHOW_GROUP_IN_OUTLINE" = "نمایش گروه در نمای درختی";
+
+/* Menu item to show the history of the selected entry
+   Toolbar item to toggle history display */
+"SHOW_HISTORY" = "نمایش تاریخچه";
+
+/* Displayed name when title field was copied
+   Menu item to toggle display of title column in entry table
+   Title column title
+   Title reference item */
+"TITLE" = "عنوان";
+
+/* preset to expire tomorrow */
+"TOMORROW" = "فردا";
+
+/* Toolbar item to perform autotype */
+"TOOLBAR_PERFORM_AUTOTYPE_FOR_ENTRY" = "تایپ خودکار";
+
+/* Field TOTP was copied to the pasteboard */
+"TOTP" = "TOTP";
+
+/* Time in seconds remaining for a valid TOTP string, format should be %ld */
+"TOTP_REMAINING_TIME_%ld_SECONDS" = "%ld s";
+
+/* Touchbar button label for choosing the keyfile */
+"TOUCHBAR_CHOOSE_KEYFILE" = "انتخاب فایل کلید";
+
+/* Touchbar button label for copying the password */
+"TOUCHBAR_COPY_PASSWORD" = "کپی گذرواژه";
+
+/* Touchbar button label for copying the username */
+"TOUCHBAR_COPY_USERNAME" = "کپی نام کاربری";
+
+/* Touchbar button label for deleting elements */
+"TOUCHBAR_DELETE" = "حذف";
+
+/* Touchbar button label for opening the popover to edit */
+"TOUCHBAR_EDIT" = "ویرایش";
+
+/* Touchbar button label for locking the database */
+"TOUCHBAR_LOCK_DATABASE" = "قفل کردن پایگاه داده";
+
+/* Touchbar button label for creating a new item */
+"TOUCHBAR_NEW_ENTRY" = "مدخل جدید";
+
+/* Touchbar button label for creating a new group */
+"TOUCHBAR_NEW_GROUP" = "گروه جدید";
+
+/* Touchbar button label for performing autotype */
+"TOUCHBAR_PERFORM_AUTOTYPE" = "انجام تایپ خودکار";
+
+/* Touchbar button label for searching the database */
+"TOUCHBAR_SEARCH" = "جستجوی پایگاه داده";
+
+/* Touchbar button label for showing the password */
+"TOUCHBAR_SHOW_PASSWORD" = "نمایش گذرواژه";
+
+/* Touchbar button label for unlocking the database */
+"TOUCHBAR_UNLOCK_DATABASE" = "باز کردن قفل پایگاه داده";
+
+/* Move Entry to Trash */
+"TRASH_ENTRY" = "انتقال مدخل به سطل زباله";
+
+/* Move Group to Trash */
+"TRASH_GROUP" = "انتقال گروه به سطل زباله";
+
+/* Uninstall plugin */
+"UNINSTALL" = "حذف نصب";
+
+/* No comment provided by engineer. */
+"UNKNOWN_FILE_VERSION" = "نسخهٔ ناشناختهٔ پایگاه داده";
+
+/* Unknown database format. */
+"UNKNOWN_FORMAT" = "فرمت ناشناختهٔ فایل";
+
+/* Database format is unknown since the file is not saved yet */
+"UNKNOWN_FORMAT_FILE_NOT_SAVED_YET" = "ناشناخته، پایگاه داده هنوز ذخیره نشده است";
+
+/* No comment provided by engineer. */
+"UNKNOWN_TOOLBAR_ITEM" = "مورد ناشناخته در نوار ابزار";
+
+/* Update Settings Label */
+"UPDATE_PREFERENCES" = "به‌روزرسانی‌ها";
+
+/* Menu item to toggle display of url column in entry table
+   Submenu with options what to do with the URL of an entry
+   Url column title
+   URL reference item */
+"URL" = "نشانی";
+
+/* Menu item to toggle display of username column in entry table
+   Username column title
+   Username reference item */
+"USERNAME" = "نام کاربری";
+
+/* Displayed name when uuid field was copied
+   UUID reference item */
+"UUID" = "UUID";
+
+/* Error message displayed when the current database file is also set as the key file */
+"WARNING_CURRENT_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "نمی‌توانید فایل پایگاه دادهٔ فعلی را به‌عنوان فایل کلید انتخاب کنید.";
+
+/* Error message displayed when a keepass database file is set as the key file */
+"WARNING_DATABASE_FILE_SELECTED_AS_KEY_FILE" = "نباید از فایل پایگاه دادهٔ دیگری به‌عنوان فایل کلید استفاده کنید، زیرا ممکن است تغییر کند و مانع از باز شدن مجدد فایل فعلی شود.";
+
+/* No key file is set
+ Warning tha no key file is set when chaning the password */
+"WARNING_NO_KEYFILE" = "هیچ فایل کلیدی تعیین نشده است";
+
+/* Warning if no password is set when chaning the password */
+"WARNING_NO_PASSWORD" = "هیچ گذرواژه‌ای تعیین نشده است";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_DELETE_TRASHED_NODE_DESCRIPTION" = "مورد(های) سطل زباله حذف خواهند شد!";
+
+/* Message text for the alert displayed when deleting a node */
+"WARNING_ON_DELETE_TRASHED_NODE_TITLE" = "حذف مورد سطل زباله";
+
+/* Informative Text displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_DESCRIPTION" = "خالی کردن سطل زباله قابل بازگشت نیست.";
+
+/* Message text for the alert displayed when clearing the Trash */
+"WARNING_ON_EMPTY_TRASH_TITLE" = "سطل زباله خالی شود؟";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET" = "هیچ گذرواژه یا فایل کلیدی تنظیم نشده است.";
+
+/* No comment provided by engineer. */
+"WARNING_ON_SAVE_NO_PASSWORD_OR_KEY_SET_SUGGESTION" = "لطفاً یک گذرواژه و/یا فایل کلید برای این پایگاه داده تنظیم کنید. لغو این کار تمام تغییرات را بازگردانده و سند را قفل می‌کند";
+
+/* Text displayed when no recent documents can be displayed in */
+"WELCOME_WINDOW_NO_RECENT_DOCUMENTS" = "هیچ سند اخیری وجود ندارد";
+
+/* Label for the workflow settings tab */
+"WORKFLOW_SETTINGS" = "گردش کار";
+
+/* Yesterday */
+"YESTERDAY" = "دیروز";
+
+/* Label for the security settings tab */
+"SECURITY_PREFERENCES" = "امنیت";
+
+/* Touch ID key storage modes */
+"TOUCHID_DISABLED" = "غیرفعال";
+"TOUCHID_TRANSIENT_KEY_STORAGE" = "ذخیره تا زمان خروج";
+"TOUCHID_PERSISTENT_KEY_STORAGE" = "ذخیرهٔ دائمی";
+
+/* Tooltip displayed when Touch ID is disabled */
+"TOOLTIP_TOUCHID_DISABLED" = "باز کردن قفل با Touch ID غیرفعال است.";
