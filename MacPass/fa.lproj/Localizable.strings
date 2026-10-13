@@ -38,7 +38,7 @@
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_INFORMATIVE_TEXT" = "تعاریف افزونه به صورت آنلاین در https://macpass.app میزبانی می‌شوند. MacPass مایل است این فایل‌ها را دانلود کند تا از به‌روز بودن داده‌ها اطمینان حاصل شود.";
 
 /* Message displayed on the alert that asks for permission to download the plugin repository JSON file */
-"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "MacPass مایل است به‌روزرسانی‌های تعاریف افزونه را به صورت آنلاین بررسی کند";
+"ALERT_ASK_FOR_PLUGIN_REPOSITORY_CONNECTION_PERMISSION_MESSAGE" = "به‌روزرسانی‌های تعاریف افزونه را MacPass مایل است به صورت آنلاین بررسی کند";
 
 /* Disallow the download of the plugin repository file */
 "ALERT_ASK_FOR_PLUGIN_REPOSITORY_DISALLOW_DOWNLOAD" = "عدم به‌روزرسانی تعاریف";
@@ -114,7 +114,7 @@
 "AUTOTYPE_NO" = "غیرفعال کردن تایپ خودکار";
 
 /* Notification: Autotype failed, MacPass has not enough permissions to perform autotype */
-"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "MacPass تمام مجوزهای لازم برای اجرای تایپ خودکار را ندارد.";
+"AUTOTYPE_NOTIFICATION_MACPASS_IS_MISSING_PERMISSIONS" = "تمام مجوزهای لازم برای اجرای تایپ خودکار به MacPass داده نشده است.";
 
 /* Notification: Title for autotype feedback */
 "AUTOTYPE_NOTIFICATION_MATCH_TITLE" = "تایپ خودکار";
@@ -138,16 +138,16 @@
 "AUTOTYPE_NOTIFICATION_TIMED_OUT_TITLE" = "مهلت زمانی تایپ خودکار به پایان رسید!";
 
 /* Status label when no issue were found in accessibilty */
-"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "MacPass مجوز کنترل رایانهٔ شما را دارد (Accessibility)";
+"AUTOTYPE_STATUS_ACCESSIBILTY_PERMISSIONS_OK" = "مجوز کنترل رایانهٔ شما به MacPass داده شده است (Accessibility)";
 
 /* Status MacPass has no accessibilty permissions */
-"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "MacPass مجوزی برای کنترل رایانهٔ شما ندارد (Accessibility)";
+"AUTOTYPE_STATUS_NO_ACCESSIBILTY_PERMISSIONS" = "مجوزی برای کنترل رایانهٔ شما به MacPass داده نشده است (Accessibility)";
 
 /* Status MacPass has no screen recording permissions */
-"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "MacPass مجوزی برای ضبط صفحهٔ نمایش شما ندارد";
+"AUTOTYPE_STATUS_NO_SCREEN_RECORDING_PERMISSIONS" = "مجوزی برای ضبط صفحهٔ نمایش شما به MacPass داده نشده است";
 
 /* Status label when no issue were found in screen recording permissions */
-"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "MacPass مجوز ضبط صفحهٔ نمایش شما را دارد";
+"AUTOTYPE_STATUS_SCREEN_RECORDING_PERMISSIONS_OK" = "مجوز ضبط صفحهٔ نمایش شما به MacPass داده شده است";
 
 /* Notficication: Autotype timed out */
 "AUTOTYPE_TIMED_OUT" = "زمان زیادی از شروع تایپ خودکار گذشته است. MacPass برای جلوگیری از هرگونه ورودی اشتباه، آن را اجرا نکرد!";
@@ -367,10 +367,10 @@
 "ERROR_INVALID_PLUGIN" = "افزونهٔ نامعتبر";
 
 /* Error description for missing accessibility permissions */
-"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "MacPass اجازهٔ کنترل رایانهٔ شما را ندارد (Accessibility)";
+"ERROR_NO_ACCESSIBILITY_PERMISSIONS" = "اجازهٔ کنترل رایانهٔ شما به MacPass داده نشده است (Accessibility)";
 
 /* Error description for missing screen recording permissions */
-"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "MacPass اجازهٔ ضبط صفحهٔ نمایش شما را ندارد";
+"ERROR_NO_PERMISSION_TO_RECORD_SCREEN" = "اجازهٔ ضبط صفحهٔ نمایش شما به MacPass داده نشده است";
 
 /* Passwords do not match */
 "ERROR_PASSWORD_MISSMATCH" = "گذرواژه‌ها مطابقت ندارند!";
