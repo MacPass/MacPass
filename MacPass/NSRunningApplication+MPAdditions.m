@@ -13,6 +13,7 @@
 
 NSString *const MPWindowIDKey = @"MPWindowIDKey";
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
+NSString *const MPWindowURLKey = @"MPWindowURLKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
 
 BOOL skipWindowTitle(NSString *windowTitle) {
@@ -29,7 +30,15 @@ BOOL skipWindowTitle(NSString *windowTitle) {
   return [titlesToSkip containsObject:windowTitle];
 }
 
-static NSString *focusedAccessibilityWindowTitle(pid_t pid) {
+static id copyAccessibilityValue(AXUIElementRef element, CFStringRef attribute) {
+  CFTypeRef value = NULL;
+  AXError error = AXUIElementCopyAttributeValue(element, attribute, &value);
+  id result = CFBridgingRelease(value);
+  return error == kAXErrorSuccess ? result : nil;
+}
+
+/* Title and document URL of the focused window, keyed by MPWindowTitleKey and MPWindowURLKey */
+static NSDictionary *focusedAccessibilityWindowInfo(pid_t pid) {
   if(!AXIsProcessTrusted()) {
     return nil;
   }
@@ -37,26 +46,30 @@ static NSString *focusedAccessibilityWindowTitle(pid_t pid) {
   AXUIElementRef application = AXUIElementCreateApplication(pid);
   // An unresponsive target must not stall the global shortcut indefinitely.
   AXUIElementSetMessagingTimeout(application, 0.5);
-  CFTypeRef window = NULL;
-  AXError error = AXUIElementCopyAttributeValue(application, kAXFocusedWindowAttribute, &window);
+  id window = copyAccessibilityValue(application, kAXFocusedWindowAttribute);
   CFRelease(application);
-  if(error != kAXErrorSuccess || !window) {
-    if(window) {
-      CFRelease(window);
-    }
-    return nil;
-  }
-  if(CFGetTypeID(window) != AXUIElementGetTypeID()) {
-    CFRelease(window);
+  if(!window || CFGetTypeID((__bridge CFTypeRef)window) != AXUIElementGetTypeID()) {
     return nil;
   }
 
-  AXUIElementSetMessagingTimeout((AXUIElementRef)window, 0.5);
-  CFTypeRef title = NULL;
-  error = AXUIElementCopyAttributeValue((AXUIElementRef)window, kAXTitleAttribute, &title);
-  CFRelease(window);
-  id value = CFBridgingRelease(title);
-  return error == kAXErrorSuccess && [value isKindOfClass:NSString.class] ? value : nil;
+  AXUIElementRef windowElement = (__bridge AXUIElementRef)window;
+  AXUIElementSetMessagingTimeout(windowElement, 0.5);
+  NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
+  id title = copyAccessibilityValue(windowElement, kAXTitleAttribute);
+  if([title isKindOfClass:NSString.class]) {
+    info[MPWindowTitleKey] = title;
+  }
+  /* Chrome publishes the URL of the active tab as the window's document. A document without
+   a host, like the file of a text editor window, is of no use for matching. */
+  id document = copyAccessibilityValue(windowElement, kAXDocumentAttribute);
+  NSURL *url = [document isKindOfClass:NSURL.class] ? document : nil;
+  if([document isKindOfClass:NSString.class]) {
+    url = [NSURL URLWithString:document];
+  }
+  if(url.host.length > 0) {
+    info[MPWindowURLKey] = url.absoluteString;
+  }
+  return info;
 }
 
 @implementation NSRunningApplication (MPAdditions)
@@ -88,16 +101,19 @@ static NSString *focusedAccessibilityWindowTitle(pid_t pid) {
     }
   }
   if(infoDict.count > 0) {
-    // WindowServer can ellipsize Chrome titles, including the hostname used for
-    // Auto-Type matching. Accessibility exposes the full focused window title.
+    // Chrome hands an ellipsized copy of long titles to the window server, which can
+    // cut out the hostname used for Auto-Type matching. Accessibility exposes the full
+    // focused window title and the URL of the page it shows.
     // Keep the CG window ID for the candidate preview and fall back to its title
     // when the target does not expose a usable Accessibility title.
-    NSString *title = focusedAccessibilityWindowTitle(self.processIdentifier);
+    NSDictionary *accessibilityInfo = focusedAccessibilityWindowInfo(self.processIdentifier);
+    NSMutableDictionary *fullInfo = [infoDict mutableCopy];
+    NSString *title = accessibilityInfo[MPWindowTitleKey];
     if(!skipWindowTitle(title)) {
-      NSMutableDictionary *fullInfo = [infoDict mutableCopy];
       fullInfo[MPWindowTitleKey] = title;
-      infoDict = fullInfo;
     }
+    fullInfo[MPWindowURLKey] = accessibilityInfo[MPWindowURLKey];
+    infoDict = fullInfo;
   }
   if(currentWindows.count > 0 && infoDict.count == 0) {
     // show some information about not being able to determine any windows

@@ -15,6 +15,7 @@
 #import "MPAutotypeContext.h"
 #import "MPAutotypePaste.h"
 #import "MPAutotypeKeyPress.h"
+#import "MPDocument.h"
 
 #import "MPSettingsHelper.h"
 
@@ -532,5 +533,58 @@
   
 }
 
+
+- (NSArray<KPKEntry *> *)_entriesMatchingWindowTitle:(NSString *)windowTitle windowURL:(NSString *)windowURL inDocument:(MPDocument *)document settings:(NSDictionary *)settings {
+  /* the argument domain is not persisted, so the settings do not leak into the defaults of the test host */
+  NSDictionary *arguments = [NSUserDefaults.standardUserDefaults volatileDomainForName:NSArgumentDomain];
+  NSMutableDictionary *testArguments = [arguments mutableCopy];
+  [testArguments addEntriesFromDictionary:settings];
+  [NSUserDefaults.standardUserDefaults setVolatileDomain:testArguments forName:NSArgumentDomain];
+  NSArray *contexts = [document autotypContextsForWindowTitle:windowTitle windowURL:windowURL preferredEntry:nil];
+  [NSUserDefaults.standardUserDefaults setVolatileDomain:arguments forName:NSArgumentDomain];
+  return [contexts valueForKey:NSStringFromSelector(@selector(entry))];
+}
+
+- (void)testWindowAssociationMatchesWindowURL {
+  MPDocument *document = [[MPDocument alloc] initWithType:@"" error:nil];
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Delora test";
+  [entry.autotype addAssociation:[[KPKWindowAssociation alloc] initWithWindowTitle:@"*delora-test.dolamix.com*" keystrokeSequence:@"{USERNAME}{TAB}{PASSWORD}{ENTER}"]];
+  [entry addToGroup:document.root];
+  NSString *windowTitle = @"Делора · Закупки - Google Chrome - Stepan";
+
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:nil inDocument:document settings:@{}], @[]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://delora-test.dolamix.com/login" inDocument:document settings:@{}], @[entry]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:@"Delora · Закупки - https://delora-test.dolamix.com/login - Google Chrome" windowURL:nil inDocument:document settings:@{}], @[entry]);
+}
+
+- (void)testEntryURLMatchesWindowURL {
+  MPDocument *document = [[MPDocument alloc] initWithType:@"" error:nil];
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Delora test";
+  entry.url = @"https://delora-test.dolamix.com/";
+  [entry addToGroup:document.root];
+  NSDictionary *settings = @{ kMPSettingsKeyAutotypeMatchURL: @YES };
+
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:@"Sign in - Google Chrome" windowURL:@"https://delora-test.dolamix.com/login" inDocument:document settings:settings], @[entry]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:@"Sign in - Google Chrome" windowURL:@"https://example.com/login" inDocument:document settings:settings], @[]);
+}
+
+- (void)testEntryHostMatchesWindowURLHost {
+  MPDocument *document = [[MPDocument alloc] initWithType:@"" error:nil];
+  KPKEntry *entry = [[KPKEntry alloc] init];
+  entry.title = @"Dolamix";
+  entry.url = @"https://dolamix.com";
+  [entry addToGroup:document.root];
+  NSDictionary *settings = @{ kMPSettingsKeyAutotypeMatchHost: @YES };
+  NSString *windowTitle = @"Sign in - Google Chrome";
+
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://DOLAMIX.com/" inDocument:document settings:settings], @[entry]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://delora-test.dolamix.com/login" inDocument:document settings:settings], @[entry]);
+  /* only the host of the page counts, not a lookalike host or a URL in its query */
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://dolamix.com.example.net/login" inDocument:document settings:settings], @[]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://notdolamix.com/" inDocument:document settings:settings], @[]);
+  XCTAssertEqualObjects([self _entriesMatchingWindowTitle:windowTitle windowURL:@"https://accounts.example.net/signin?continue=https://dolamix.com/" inDocument:document settings:settings], @[]);
+}
 
 @end

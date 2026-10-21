@@ -33,6 +33,7 @@
       
       _pid = [frontApplicationInfoDict[MPProcessIdentifierKey] intValue];
       _windowTitle = frontApplicationInfoDict[MPWindowTitleKey];
+      _windowURL = frontApplicationInfoDict[MPWindowURLKey];
       _windowId = (CGWindowID)[frontApplicationInfoDict[MPWindowIDKey] integerValue];
       
       /* if we have any resolvers, let them provide the window title */
