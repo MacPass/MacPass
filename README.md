@@ -42,6 +42,28 @@ After that you can build and run in Xcode. The following command will build and 
 
     xcodebuild -scheme MacPass -target MacPass -configuration Release CODE_SIGNING_REQUIRED=NO NO_SPARKLE=NO_SPARKLE
 
+For local development with persistent Accessibility and Screen Recording permissions,
+use the same Apple Development signing identity for every build. Ad hoc signing
+(`CODE_SIGN_IDENTITY=-`) ties the app's identity to each build's hash and can invalidate
+those permissions after a rebuild. List available identities with
+`security find-identity -v -p codesigning`, then create the ignored file
+`.local-build.xcconfig` in the repository root:
+
+```xcconfig
+CODE_SIGN_IDENTITY = YOUR_CERTIFICATE_SHA1
+DEVELOPMENT_TEAM = YOUR_TEAM_ID
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_ENTITLEMENTS =
+ENABLE_HARDENED_RUNTIME = NO
+MACOSX_DEPLOYMENT_TARGET = 12.0
+```
+
+These settings are for local Debug builds. Run `./scripts/build-local.sh` to build
+`build/Build/Products/Debug/MacPass.app`, or `./scripts/build-local.sh test` to run
+tests with the same signing settings. Keep using that app path and signing identity.
+Switching from an ad hoc build may require granting permissions once more; subsequent
+builds should retain them. The signing configuration is local and is not committed.
+
 ## Help
 
 Some questions might be answered in the [FAQ](https://github.com/MacPass/MacPass/wiki/FAQ)

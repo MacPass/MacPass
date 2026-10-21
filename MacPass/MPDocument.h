@@ -204,15 +204,16 @@ FOUNDATION_EXPORT NSString *const MPDocumentGroupKey;
 + (BOOL)isCandidateForMalformedAutotype:(id)item;
 
 /**
- *  Returns an NSArray containing all Autotype Contexts that match the given window title.
+ *  Returns an NSArray containing all Autotype Contexts that match the given window title or window URL.
  *  If no entry is set, all entries in the document will be searched
  *
  *  @param windowTitle Window title to search matches for
+ *  @param windowURL   URL of the page shown in the window, nil if unknown. Window associations, entry URLs and hosts are matched against it as well
  *  @param entry       Entry to use for lookup. If nil lookup will be performed in complete document
  *
- *  @return NSArray of MPAutotypeContext objects matching the window title.
+ *  @return NSArray of MPAutotypeContext objects matching the window title or window URL.
  */
-- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entryOrNil;
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle windowURL:(NSString *)windowURL preferredEntry:(KPKEntry *)entryOrNil;
 /**
  *  Checks if the document has malformed autotype items
  *

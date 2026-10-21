@@ -45,10 +45,21 @@
   return (NSOrderedSame == [@"{TAB}{USERNAME}{TAB}{PASSWORD}{ENTER}" compare:keystrokeSequence options:NSCaseInsensitiveSearch]);
 }
 
-- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle preferredEntry:(KPKEntry *)entry {
+/* YES if host is domain or one of its subdomains */
+static BOOL hostIsInDomain(NSString *host, NSString *domain) {
+  if(host.length == 0 || domain.length == 0) {
+    return NO;
+  }
+  host = host.lowercaseString;
+  domain = domain.lowercaseString;
+  return [host isEqualToString:domain] || [host hasSuffix:[@"." stringByAppendingString:domain]];
+}
+
+- (NSArray *)autotypContextsForWindowTitle:(NSString *)windowTitle windowURL:(NSString *)windowURL preferredEntry:(KPKEntry *)entry {
   if(!windowTitle) {
     return nil;
   }
+  NSString *windowHost = windowURL.length > 0 ? [NSURL URLWithString:windowURL].host : nil;
   BOOL usePreferredEntry = (nil != entry);
   /* We might get a preferred entry from other documents, if so, stop searching and return */
   if(usePreferredEntry && entry.rootGroup != self.root) {
@@ -66,7 +77,11 @@
   for(KPKEntry *entry in autotypeEntries) {
     /* search in Autotype entries for match */
     BOOL foundMatch = NO;
-    for(KPKWindowAssociation *association in [entry.autotype windowAssociationsMatchingWindowTitle:windowTitle]) {
+    for(KPKWindowAssociation *association in entry.autotype.associations) {
+      /* an association written for a URL in the title, like *example.com*, matches the page URL too */
+      if(![association matchesWindowTitle:windowTitle] && !(windowURL.length > 0 && [association matchesWindowTitle:windowURL])) {
+        continue;
+      }
       context = [[MPAutotypeContext alloc] initWithWindowAssociation:association];
       if(context.valid) {
         foundMatch = YES;
@@ -85,12 +100,14 @@
     }
     /* test for URL */
     if(matchURL && !foundMatch) {
-      foundMatch = [windowTitle localizedCaseInsensitiveContainsString:entry.url];
+      foundMatch = ([windowTitle localizedCaseInsensitiveContainsString:entry.url]
+                    || [windowURL localizedCaseInsensitiveContainsString:entry.url]);
     }
     /* test for host */
     if(matchHost && !foundMatch) {
       NSURL *url = [NSURL URLWithString:entry.url];
-      foundMatch = url.host != nil && [windowTitle localizedCaseInsensitiveContainsString:url.host];
+      foundMatch = url.host != nil && ([windowTitle localizedCaseInsensitiveContainsString:url.host]
+                                       || hostIsInDomain(windowHost, url.host));
     }
     /* test for tags */
     if(matchTags && !foundMatch) {
