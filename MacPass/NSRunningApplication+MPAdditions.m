@@ -14,7 +14,7 @@ NSString *const MPWindowIDKey = @"MPWindowIDKey";
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
 
-BOOL skipWindowTitle(NSString *windowTitle) {
+BOOL skipWindowTitleAndOwner(NSString *windowTitle, NSString *windowOwner) {
   if(windowTitle.length <= 0) {
     return YES;
   }
@@ -25,7 +25,13 @@ BOOL skipWindowTitle(NSString *windowTitle) {
     titlesToSkip = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
   });
   
-  return [titlesToSkip containsObject:windowTitle];
+  if([titlesToSkip containsObject:windowTitle]) {
+    return YES;
+  }
+  if(NSOrderedSame == [windowTitle compare:@"StatusIndicator" options:NSCaseInsensitiveSearch] &&
+     NSOrderedSame == [windowOwner compare:@"Window Server" options:NSCaseInsensitiveSearch]) return YES;
+  return NO;
+  
 }
 
 @implementation NSRunningApplication (MPAdditions)
@@ -37,10 +43,12 @@ BOOL skipWindowTitle(NSString *windowTitle) {
   NSDictionary *infoDict = @{};
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
+    NSString *windowOwner = windowDict[(NSString *)kCGWindowOwnerName];
     /* skip a list of well know useless window-titles */
-    if(skipWindowTitle(windowTitle)) {
+    if(skipWindowTitleAndOwner(windowTitle, windowOwner)) {
       continue;
     }
+    
     NSNumber *processId = windowDict[(NSString *)kCGWindowOwnerPID];
     if(processId && [processId isEqualToNumber:@(self.processIdentifier)]) {
       

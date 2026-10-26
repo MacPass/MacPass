@@ -161,6 +161,7 @@ static MPAutotypeDaemon *_sharedInstance;
   [self _runAutotypeWithEnvironment:environment forContext:context];
   if(environment.hidden) {
     [NSApplication.sharedApplication hide:nil];
+    [self _setGhostModeForDocuments:NO];
   }
 }
 
@@ -169,6 +170,7 @@ static MPAutotypeDaemon *_sharedInstance;
   self.matchSelectionWindow = nil;
   if(environment.hidden) {
     [NSApplication.sharedApplication hide:nil];
+    [self _setGhostModeForDocuments:NO];
   }
   if(environment.pid) {
     [self _orderApplicationToFront:environment.pid completionHandler:nil];
@@ -389,7 +391,19 @@ static MPAutotypeDaemon *_sharedInstance;
     
   }
   [self.matchSelectionWindow center];
-  [self.matchSelectionWindow makeKeyAndOrderFront:self];
+  [self.matchSelectionWindow makeKeyAndOrderFront:nil];
+  if(environment.hidden) {
+    [self _setGhostModeForDocuments:YES];
+  }
+}
+
+- (void)_setGhostModeForDocuments:(BOOL)isGhostWindow {
+  for(NSDocument *document in NSApplication.sharedApplication.orderedDocuments) {
+    for(NSWindowController *wc in document.windowControllers) {
+      wc.window.alphaValue = isGhostWindow ? 0.0 : 1.0;
+      wc.window.ignoresMouseEvents = isGhostWindow;
+    }
+  }
 }
 
 #pragma mark -
