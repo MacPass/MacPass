@@ -285,7 +285,7 @@ static MPAutotypeDaemon *_sharedInstance;
   }
 
   if(autotypeCandidates.count == 0) {
-    return nil; // we do not have found anything
+    return nil; // we did not find anything
   }
   /* present selection and return if more than one hit */
   if(autotypeCandidates.count > 1) {
@@ -328,7 +328,7 @@ static MPAutotypeDaemon *_sharedInstance;
     /*
      FIXME: Introduce a global state for execution to allow command to set state
      value e.g. [command executeWithContext:(MPCommandExectionContext *)context]
-     and inside the command set the sate e.g. context.delay = myDelay
+     and inside the command set the state e.g. context.delay = myDelay
      then use this state in the command scheduling to set the global delay
      */
     if([command isKindOfClass:MPAutotypeDelay.class]) {
@@ -344,8 +344,7 @@ static MPAutotypeDaemon *_sharedInstance;
         usleep(globalDelay * NSEC_PER_USEC);
       }
       [command execute];
-      /* re-hide after every command since this might have put us back up front
-       */
+      /* re-hide after every command since this might have put us back up front */
       if(environment.hidden) {
         [NSApplication.sharedApplication hide:nil];
       }
@@ -433,8 +432,7 @@ static MPAutotypeDaemon *_sharedInstance;
                                    } else {
                                      retryCount--;
                                      if(retryCount > 0) {
-                                       NSLog(@"Target application %@ still not front-most. "
-                                             @"Currently frontmost: %@",
+                                       NSLog(@"Target application %@ still not front-most. Currently frontmost: %@",
                                              requestedApplication, activatedApplication);
                                        [requestedApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
                                      } else {
