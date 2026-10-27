@@ -14,24 +14,19 @@ NSString *const MPWindowIDKey = @"MPWindowIDKey";
 NSString *const MPWindowTitleKey = @"MPWindowTitleKey";
 NSString *const MPProcessIdentifierKey = @"MPProcessIdentifierKey";
 
-BOOL skipWindowTitleAndOwner(NSString *windowTitle, NSString *windowOwner) {
+BOOL MPUnuseableWindowForAutotype(NSString *windowTitle, NSString *windowOwner) {
   if(windowTitle.length <= 0) {
     return YES;
   }
   
-  static NSSet *titlesToSkip;
+  static NSSet *titlesToSkip, *ownerToSkip;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    titlesToSkip = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy"]];
+    titlesToSkip = [NSSet setWithArray:@[@"Item-0", @"Focus Proxy", @"Menubar"]];
+    ownerToSkip = [NSSet setWithArray:@[@"Dock", @"Window Server", @"SystemUIServer", @"Notification Centre", @"Spotlight", @"Control Centre", @"Universal Control", @"TextInputMenuAgent", @"TextInputSwitcher"]];
   });
-  
-  if([titlesToSkip containsObject:windowTitle]) {
-    return YES;
-  }
-  if(NSOrderedSame == [windowTitle compare:@"StatusIndicator" options:NSCaseInsensitiveSearch] &&
-     NSOrderedSame == [windowOwner compare:@"Window Server" options:NSCaseInsensitiveSearch]) return YES;
-  return NO;
-  
+
+  return [titlesToSkip containsObject:windowTitle] || [ownerToSkip containsObject:windowOwner];
 }
 
 @implementation NSRunningApplication (MPAdditions)
@@ -45,7 +40,7 @@ BOOL skipWindowTitleAndOwner(NSString *windowTitle, NSString *windowOwner) {
     NSString *windowTitle = windowDict[(NSString *)kCGWindowName];
     NSString *windowOwner = windowDict[(NSString *)kCGWindowOwnerName];
     /* skip a list of well know useless window-titles */
-    if(skipWindowTitleAndOwner(windowTitle, windowOwner)) {
+    if(MPUnuseableWindowForAutotype(windowTitle, windowOwner)) {
       continue;
     }
     

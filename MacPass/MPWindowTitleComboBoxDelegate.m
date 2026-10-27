@@ -21,6 +21,7 @@
 //
 
 #import "MPWindowTitleComboBoxDelegate.h"
+#import "NSRunningApplication+MPAdditions.h"
 
 @implementation MPWindowTitleComboBoxDelegate
 
@@ -35,23 +36,17 @@
 }
 
 - (NSArray *)_currentWindowTitles {
-  static NSArray *ownerSkipList;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    ownerSkipList = @[ @"SystemUIServer", @"Window Server", @"Dock" ];
-  });
   NSArray *currentWindows = CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListExcludeDesktopElements, kCGNullWindowID));
   NSMutableArray *windowTitles = [[NSMutableArray alloc] initWithCapacity:MAX(1,currentWindows.count)];
   for(NSDictionary *windowDict in currentWindows) {
     NSString *windowName = windowDict[(NSString *)kCGWindowName];
-    if(windowName.length <= 0) {
-      continue; // No title, skip
-    }
     NSString *ownerName = windowDict[(NSString *)kCGWindowOwnerName];
-    if([ownerSkipList containsObject:ownerName]) {
+    if(MPUnuseableWindowForAutotype(windowName, ownerName)) {
+      NSLog(@"Skipping window: %@ (%@)", windowName, ownerName);
       continue; // We do not want to insert some system windows (Dock, Menubars)
     }
-    [windowTitles addObject:windowDict[(NSString *)kCGWindowName]];
+    NSLog(@"Adding window: %@ (%@)", windowName, ownerName);
+    [windowTitles addObject:windowName];
   }
   return windowTitles;
 }

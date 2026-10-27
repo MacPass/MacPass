@@ -17,6 +17,7 @@ APPKIT_EXTERN NSString *const MPWindowIDKey;
 APPKIT_EXTERN NSString *const MPWindowTitleKey;
 APPKIT_EXTERN NSString *const MPProcessIdentifierKey;
 
+APPKIT_EXTERN BOOL MPUnuseableWindowForAutotype(NSString *_Nullable windowTitle, NSString *_Nullable windowOwner);
 
 @interface NSRunningApplication (MPAdditions)
 
