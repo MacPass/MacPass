@@ -21,39 +21,39 @@
 //
 
 #import "MPEntryInspectorViewController.h"
-#import "MPInspectorViewController.h"
 #import "MPAttachmentTableDataSource.h"
 #import "MPAttachmentTableViewDelegate.h"
+#import "MPAutotypeBuilderViewController.h"
 #import "MPCustomFieldTableViewDelegate.h"
+#import "MPEntryAttributeViewController.h"
+#import "MPInspectorViewController.h"
+#import "MPNodeExpirationViewController.h"
 #import "MPPasswordCreatorViewController.h"
+#import "MPReferenceBuilderViewController.h"
+#import "MPTOTPSetupViewController.h"
+#import "MPTOTPViewController.h"
+#import "MPTagsTokenFieldDelegate.h"
 #import "MPWindowAssociationsTableViewDelegate.h"
 #import "MPWindowTitleComboBoxDelegate.h"
-#import "MPTagsTokenFieldDelegate.h"
-#import "MPAutotypeBuilderViewController.h"
-#import "MPReferenceBuilderViewController.h"
-#import "MPTOTPViewController.h"
-#import "MPTOTPSetupViewController.h"
-#import "MPEntryAttributeViewController.h"
-#import "MPNodeExpirationViewController.h"
 
 #import "MPPrettyPasswordTransformer.h"
 #import "NSString+MPPasswordCreation.h"
 
+#import "MPActionHelper.h"
+#import "MPAddCustomFieldContextMenuDelegate.h"
+#import "MPContextButton.h"
 #import "MPDocument.h"
 #import "MPIconHelper.h"
-#import "MPValueTransformerHelper.h"
+#import "MPPasteBoardController.h"
+#import "MPSettingsHelper.h"
 #import "MPTemporaryFileStorage.h"
 #import "MPTemporaryFileStorageCenter.h"
-#import "MPActionHelper.h"
-#import "MPSettingsHelper.h"
-#import "MPPasteBoardController.h"
-#import "MPContextButton.h"
-#import "MPAddCustomFieldContextMenuDelegate.h"
+#import "MPValueTransformerHelper.h"
 
 #import "MPArrayController.h"
 
-#import "KeePassKit/KeePassKit.h"
 #import "HNHUi/HNHUi.h"
+#import "KeePassKit/KeePassKit.h"
 
 typedef NS_ENUM(NSUInteger, MPEntryTab) {
   MPEntryTabGeneral,
@@ -71,7 +71,6 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   MPInpspectorEditorIndexTags,
   MPInpspectorEditorIndexDefaultCount
 };
-
 
 @interface NSObject (MPAppKitPrivateAPI)
 - (void)_searchWithGoogleFromMenu:(id)obj;
@@ -109,7 +108,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
+  if(self) {
     _showPassword = NO;
     _attachmentsController = [[NSArrayController alloc] init];
     _customFieldsController = [[NSArrayController alloc] init];
@@ -125,7 +124,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     _attachmentTableDelegate.viewController = self;
     _customFieldTableDelegate.viewController = self;
     _addCustomFieldContextMenuDelegate.viewController = self;
-    
+
     _attributeEditorViewControllers = [[NSMutableArray alloc] init];
     _activeTab = MPEntryTabGeneral;
   }
@@ -145,9 +144,9 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     [NSNotificationCenter.defaultCenter removeObserver:self name:KPKDidChangeEntryNotification object:self.representedEntry];
   }
   super.representedObject = representedObject;
-  
+
   [self _updateEditors];
-  
+
   /* only register for a single entry! */
   if(self.representedEntry) {
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_willChangeEntry:) name:KPKWillChangeEntryNotification object:self.representedEntry];
@@ -156,10 +155,10 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 }
 
 - (void)viewDidLoad {
-  
+
   [self _addScrollViewWithView:self.generalView atTab:MPEntryTabGeneral];
   [self _addScrollViewWithView:self.autotypView atTab:MPEntryTabAutotype];
-  
+
   [self.infoTabControl bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
   [self.tabView bind:NSSelectedIndexBinding toObject:self withKeyPath:NSStringFromSelector(@selector(activeTab)) options:nil];
 
@@ -167,17 +166,17 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   [self.attachmentTableView bind:NSContentBinding toObject:_attachmentsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.attachmentTableView.delegate = _attachmentTableDelegate;
   self.attachmentTableView.dataSource = _attachmentDataSource;
-  [self.attachmentTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
+  [self.attachmentTableView registerForDraggedTypes:@[ NSFilenamesPboardType ]];
   [self.attachmentTableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
-  
+
   /* extract custom field table view */
   NSView *customFieldTableView = self.customFieldsTableView;
   self.customFieldsTableView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.customFieldsTableView.enclosingScrollView removeFromSuperviewWithoutNeedingDisplay];
   [self.customFieldsTableView removeFromSuperviewWithoutNeedingDisplay];
-  
+
   [self.generalView addSubview:customFieldTableView];
-  
+
   NSDictionary *dict = NSDictionaryOfVariableBindings(customFieldTableView, _fieldsStackView, _addCustomFieldButton);
   [self.generalView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[customFieldTableView]-16-|"
                                                                            options:0
@@ -187,34 +186,32 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
                                                                            options:0
                                                                            metrics:nil
                                                                              views:dict]];
-  
-  
-  
+
   self.customFieldsTableView.backgroundColor = NSColor.clearColor;
   self.customFieldsTableView.usesAutomaticRowHeights = YES;
-  if (@available(macOS 11.0, *)) {
+  if(@available(macOS 11.0, *)) {
     self.customFieldsTableView.additionalSafeAreaInsets = NSEdgeInsetsZero;
   }
   [self.customFieldsTableView bind:NSContentBinding toObject:_customFieldsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   self.customFieldsTableView.delegate = _customFieldTableDelegate;
-  
+
   [self.customFieldsTableView sizeLastColumnToFit];
-  
+
   self.windowAssociationsTableView.backgroundColor = NSColor.clearColor;
   self.windowAssociationsTableView.delegate = _windowAssociationsTableDelegate;
   [self.windowAssociationsTableView bind:NSContentBinding toObject:_windowAssociationsController withKeyPath:NSStringFromSelector(@selector(arrangedObjects)) options:nil];
   [self.windowAssociationsTableView bind:NSSelectionIndexesBinding toObject:_windowAssociationsController withKeyPath:NSSelectionIndexesBinding options:nil];
-  
+
   self.windowTitleComboBox.delegate = _windowTitleMenuDelegate;
-  
+
   [self.passwordTextField bind:NSStringFromSelector(@selector(showPassword)) toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
   [self.togglePassword bind:NSValueBinding toObject:self withKeyPath:NSStringFromSelector(@selector(showPassword)) options:nil];
-  
+
   self.tagsTokenField.delegate = _tagTokenFieldDelegate;
-    
+
   [self _setupAttributeEditors];
   [self _updateEditors];
-  
+
   [self _setupCustomFieldsButton];
   [self _setupViewBindings];
 }
@@ -257,16 +254,17 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   NSSavePanel *savePanel = [NSSavePanel savePanel];
   savePanel.canCreateDirectories = YES;
   savePanel.nameFieldStringValue = binary.name;
-  
-  [savePanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
-    if(result == NSModalResponseOK) {
-      NSError *error;
-      BOOL sucess = [binary saveToLocation:savePanel.URL error:&error];
-      if(!sucess && error) {
-        [NSApp presentError:error];
-      }
-    }
-  }];
+
+  [savePanel beginSheetModalForWindow:self.windowController.window
+                    completionHandler:^(NSInteger result) {
+                      if(result == NSModalResponseOK) {
+                        NSError *error;
+                        BOOL sucess = [binary saveToLocation:savePanel.URL error:&error];
+                        if(!sucess && error) {
+                          [NSApp presentError:error];
+                        }
+                      }
+                    }];
 }
 
 - (void)addAttachment:(id)sender {
@@ -276,16 +274,17 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   openPanel.allowsMultipleSelection = YES;
   openPanel.prompt = NSLocalizedString(@"OPEN_BUTTON_ADD_ATTACHMENT_OPEN_PANEL", "Open button in the open panel to add attachments to an entry");
   openPanel.message = NSLocalizedString(@"MESSAGE_ADD_ATTACHMENT_OPEN_PANEL", "Message in the open panel to add attachments to an entry");
-  [openPanel beginSheetModalForWindow:self.windowController.window completionHandler:^(NSInteger result) {
-    if(result == NSModalResponseOK) {
-      for (NSURL *attachmentURL in openPanel.URLs) {
-        KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
-        [self.observer willChangeModelProperty];
-        [self.representedEntry addBinary:binary];
-        [self.observer didChangeModelProperty];
-      }
-    }
-  }];
+  [openPanel beginSheetModalForWindow:self.windowController.window
+                    completionHandler:^(NSInteger result) {
+                      if(result == NSModalResponseOK) {
+                        for(NSURL *attachmentURL in openPanel.URLs) {
+                          KPKBinary *binary = [[KPKBinary alloc] initWithContentsOfURL:attachmentURL];
+                          [self.observer willChangeModelProperty];
+                          [self.representedEntry addBinary:binary];
+                          [self.observer didChangeModelProperty];
+                        }
+                      }
+                    }];
 }
 
 - (void)removeAttachment:(id)sender {
@@ -308,7 +307,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 
 - (void)removeWindowAssociation:(id)sender {
   NSInteger row = self.windowAssociationsTableView.selectedRow;
-  if(row > - 1 && row < self.representedEntry.autotype.associations.count) {
+  if(row > -1 && row < self.representedEntry.autotype.associations.count) {
     [self.observer willChangeModelProperty];
     KPKWindowAssociation *association = self.representedEntry.autotype.associations[row];
     if(association) {
@@ -324,12 +323,10 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     if([self acceptsPreviewPanelControl:nil]) {
       [self _updatePreviewItemForPanel:panel];
       [panel reloadData];
-    }
-    else {
+    } else {
       [panel orderOut:sender];
     }
-  }
-  else {
+  } else {
     [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:sender];
   }
 }
@@ -339,8 +336,8 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     case MPActionToggleQuicklook: {
       BOOL enabled = [NSUserDefaults.standardUserDefaults boolForKey:kMPSettingsKeyEnableQuicklookPreview];
       return enabled ? [self acceptsPreviewPanelControl:nil] : NO;
-    case MPActionRemoveAttachment:
-      return !self.representedEntry.isHistory;
+      case MPActionRemoveAttachment:
+        return !self.representedEntry.isHistory;
     }
     default:
       return YES;
@@ -381,8 +378,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   NSView *location;
   if([sender isKindOfClass:NSView.class]) {
     location = sender;
-  }
-  else if([sender isKindOfClass:NSMenuItem.class]) {
+  } else if([sender isKindOfClass:NSMenuItem.class]) {
     location = [sender representedObject];
   }
   [self _showPopopver:[[MPReferenceBuilderViewController alloc] init] atView:location onEdge:NSMinYEdge];
@@ -394,7 +390,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     location = sender;
     [sender setEnabled:NO];
   }
-  if([sender isKindOfClass:NSMenuItem.class]){
+  if([sender isKindOfClass:NSMenuItem.class]) {
     location = [sender representedObject];
   }
   MPAutotypeBuilderViewController *autotypeBuilder = [[MPAutotypeBuilderViewController alloc] init];
@@ -423,7 +419,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   }
   MPTOTPSetupViewController *vc = [[MPTOTPSetupViewController alloc] init];
   vc.representedObject = self.representedObject;
-  
+
   [self _showPopopver:vc atView:location onEdge:NSMinYEdge];
 }
 
@@ -431,8 +427,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   if([viewController isKindOfClass:MPAutotypeBuilderViewController.class]) {
     self.showCustomAssociationSequenceAutotypeBuilderButton.enabled = YES;
     self.showCustomEntrySequenceAutotypeBuilderButton.enabled = YES;
-  }
-  else if([viewController isKindOfClass:MPPasswordCreatorViewController.class]) {
+  } else if([viewController isKindOfClass:MPPasswordCreatorViewController.class]) {
     self.generatePasswordButton.enabled = YES;
   }
   [super dismissViewController:viewController];
@@ -449,7 +444,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 #pragma mark UI Setup
 - (void)_addScrollViewWithView:(NSView *)view atTab:(MPEntryTab)tab {
   /* ScrollView setup for the General Tab */
-  
+
   HNHUIScrollView *scrollView = [[HNHUIScrollView alloc] init];
   scrollView.actAsFlipped = NO;
   scrollView.showBottomShadow = NO;
@@ -457,7 +452,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   scrollView.drawsBackground = NO;
   scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   NSView *clipView = scrollView.contentView;
-  
+
   NSTabViewItem *tabViewItem = [self.tabView tabViewItemAtIndex:tab];
   NSView *tabView = tabViewItem.view;
   /*
@@ -467,12 +462,12 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   scrollView.documentView = view;
   [tabView addSubview:scrollView];
   tabViewItem.initialFirstResponder = scrollView;
-  
+
   NSDictionary *views = NSDictionaryOfVariableBindings(view, scrollView);
   [scrollView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|"
                                                                                options:0
                                                                                metrics:nil
-                                                                                 views:views ]];
+                                                                                 views:views]];
   [scrollView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
                                                                                options:0
                                                                                metrics:nil
@@ -485,7 +480,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
                                                                    options:0
                                                                    metrics:nil
                                                                      views:views]];
-  
+
   [self.view layoutSubtreeIfNeeded];
 }
 
@@ -497,34 +492,34 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 
 - (void)_setupViewBindings {
   /* Disable for history view */
-  NSArray *inputs = @[self.titleTextField,
-                      self.passwordTextField,
-                      self.usernameTextField,
-                      self.URLTextField,
-                      self.expiresCheckButton,
-                      self.tagsTokenField,
-                      self.generatePasswordButton,
-                      self.addAttachmentButton,
-                      self.addCustomFieldButton,
-                      self.addWindowAssociationButton,
-                      self.removeWindowAssociationButton,
-                      self.enableAutotypeCheckButton,
-                      self.obfuscateAutotypeCheckButton,
-                      self.customEntrySequenceTextField,
-                      self.windowTitleComboBox,
-                      self.associationSequenceTextField];
-  
+  NSArray *inputs = @[ self.titleTextField,
+                       self.passwordTextField,
+                       self.usernameTextField,
+                       self.URLTextField,
+                       self.expiresCheckButton,
+                       self.tagsTokenField,
+                       self.generatePasswordButton,
+                       self.addAttachmentButton,
+                       self.addCustomFieldButton,
+                       self.addWindowAssociationButton,
+                       self.removeWindowAssociationButton,
+                       self.enableAutotypeCheckButton,
+                       self.obfuscateAutotypeCheckButton,
+                       self.customEntrySequenceTextField,
+                       self.windowTitleComboBox,
+                       self.associationSequenceTextField ];
+
   for(NSControl *control in inputs) {
     [control bind:NSEnabledBinding
-         toObject:self
-      withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))]
-          options:@{NSConditionallySetsEditableBindingOption: @NO, NSValueTransformerNameBindingOption: NSNegateBooleanTransformerName}];
+           toObject:self
+        withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(isHistory))]
+            options:@{NSConditionallySetsEditableBindingOption : @NO, NSValueTransformerNameBindingOption : NSNegateBooleanTransformerName}];
   }
-  
+
   /* general */
-  NSDictionary *nullPlaceholderBindingOptionsDict = @{ NSNullPlaceholderBindingOption: NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
-  NSDictionary *prettyPasswordBindingOptionsDict = @{ NSNullPlaceholderBindingOption: nullPlaceholderBindingOptionsDict[NSNullPlaceholderBindingOption], NSValueTransformerNameBindingOption : MPPrettyPasswordTransformerName };
-  
+  NSDictionary *nullPlaceholderBindingOptionsDict = @{NSNullPlaceholderBindingOption : NSLocalizedString(@"NONE", "Placeholder text for input fields if no entry or group is selected")};
+  NSDictionary *prettyPasswordBindingOptionsDict = @{NSNullPlaceholderBindingOption : nullPlaceholderBindingOptionsDict[NSNullPlaceholderBindingOption], NSValueTransformerNameBindingOption : MPPrettyPasswordTransformerName};
+
   [self.titleTextField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(title))]
@@ -533,12 +528,12 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(password))]
                        options:prettyPasswordBindingOptionsDict];
-  
+
   [self.usernameTextField bind:NSValueBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(username))]
                        options:nullPlaceholderBindingOptionsDict];
-  
+
   [self.URLTextField bind:NSValueBinding
                  toObject:self
               withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(url))]
@@ -547,73 +542,70 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   [self.expiresCheckButton bind:NSTitleBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expirationDate))]
-                        options:@{ NSValueTransformerNameBindingOption:MPExpiryDateValueTransformerName }];
+                        options:@{NSValueTransformerNameBindingOption : MPExpiryDateValueTransformerName}];
 
   [self.expiresCheckButton bind:NSValueBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(timeInfo)), NSStringFromSelector(@selector(expires))]
                         options:nil];
-  
+
   [self.tagsTokenField bind:NSValueBinding
                    toObject:self
                 withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(tags))]
                     options:nullPlaceholderBindingOptionsDict];
-  
-  
+
   [self.uuidTextField bind:NSValueBinding
                   toObject:self
                withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(uuid)), NSStringFromSelector(@selector(UUIDString))]
-                   options:@{ NSConditionallySetsEditableBindingOption: @NO }];
+                   options:@{NSConditionallySetsEditableBindingOption : @NO}];
   self.uuidTextField.editable = NO;
-    
+
   /* Attachments */
   [_attachmentsController bind:NSContentArrayBinding
                       toObject:self
                    withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(binaries))]
                        options:nil];
-  
+
   /* CustomField */
   [_customFieldsController bind:NSContentArrayBinding
                        toObject:self
                     withKeyPath:[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(customAttributes))]
                         options:nil];
-  
+
   /* Autotype */
   [self.enableAutotypeCheckButton bind:NSValueBinding
                               toObject:self
-                           withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))] options:nil];
+                           withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
+                               options:nil];
   [self.obfuscateAutotypeCheckButton bind:NSValueBinding
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(obfuscateDataTransfer))]
                                   options:nil];
-  
+
   /* Use enabled2 since NSEnabledBinding is already bound! */
   [self.customEntrySequenceTextField bind:@"enabled2"
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(enabled))]
                                   options:nil];
-  
-  
+
   [self.customEntrySequenceTextField bind:NSValueBinding
                                  toObject:self
                               withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(defaultKeystrokeSequence))]
-                                  options:@{ NSValidatesImmediatelyBindingOption: @YES }];
+                                  options:@{NSValidatesImmediatelyBindingOption : @YES}];
   [_windowAssociationsController bind:NSContentArrayBinding
                              toObject:self
                           withKeyPath:[NSString stringWithFormat:@"%@.%@.%@", NSStringFromSelector(@selector(representedObject)), NSStringFromSelector(@selector(autotype)), NSStringFromSelector(@selector(associations))]
-                              options:@{ NSSelectsAllWhenSettingContentBindingOption: @NO }];
+                              options:@{NSSelectsAllWhenSettingContentBindingOption : @NO}];
   [self.windowTitleComboBox setStringValue:@""];
   [self.windowTitleComboBox bind:NSValueBinding
                         toObject:_windowAssociationsController
                      withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(windowTitle))]
                          options:nil];
-  
+
   [self.associationSequenceTextField bind:NSValueBinding
                                  toObject:_windowAssociationsController
                               withKeyPath:[NSString stringWithFormat:@"selection.%@", NSStringFromSelector(@selector(keystrokeSequence))]
                                   options:nil];
-  
-  
 }
 
 - (void)_setupCustomFieldsButton {
@@ -627,7 +619,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
 
 - (void)_setupAttributeEditors {
   self.totpViewController = [[MPTOTPViewController alloc] init];
-  
+
   NSInteger urlindex = [self.fieldsStackView.arrangedSubviews indexOfObject:self.URLTextField];
   NSAssert(urlindex != NSNotFound, @"Missing reference view. This should not happen!");
   [self addChildViewController:self.totpViewController];
@@ -643,7 +635,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   vc.isEditor = NO;
   [_attributeEditorViewControllers addObject:vc];
   [self.fieldsStackView addArrangedSubview:vc.view];
-  
+
   for(NSUInteger index = 0; index < kKPKDefaultEntryKeysCount; index++) {
     MPEntryAttributeViewController *vc = [[MPEntryAttributeViewController alloc] init];
     vc.isEditor = NO;
@@ -705,20 +697,15 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
     }
     if(textField == self.usernameTextField) {
       info = MPPasteboardOverlayInfoUsername;
-    }
-    else if(textField == self.passwordTextField) {
+    } else if(textField == self.passwordTextField) {
       info = MPPasteboardOverlayInfoPassword;
-    }
-    else if(textField == self.URLTextField) {
+    } else if(textField == self.URLTextField) {
       info = MPPasteboardOverlayInfoURL;
-    }
-    else if(textField == self.uuidTextField) {
+    } else if(textField == self.uuidTextField) {
       name = NSLocalizedString(@"UUID", "Displayed name when uuid field was copied");
-    }
-    else if(textField == self.titleTextField) {
+    } else if(textField == self.titleTextField) {
       name = NSLocalizedString(@"TITLE", "Displayed name when title field was copied");
-    }
-    else {
+    } else {
       NSInteger index = MPCustomFieldIndexFromTag(textField.tag);
       if(index > -1) {
         name = [_customFieldsController.arrangedObjects[index] key];
@@ -730,7 +717,7 @@ typedef NS_ENUM(NSUInteger, MPInpspectorEditorIndex) {
   return YES;
 }
 
-- (IBAction)toggleExpire:(NSButton*)sender {
+- (IBAction)toggleExpire:(NSButton *)sender {
   if([sender state] == NSOnState && [self.representedEntry.timeInfo.expirationDate isEqualToDate:NSDate.distantFuture]) {
     [NSApp sendAction:self.pickExpireDateButton.action to:nil from:self.pickExpireDateButton];
   }
