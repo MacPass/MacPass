@@ -1,0 +1,23 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 2
+---
+Language: ObjC
+AlignTrailingComments: true
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+ColumnLimit: 0
+ObjCSpaceAfterProperty: true
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: false
+  AfterForeachMacros: false
+  AfterFunctionDeclarationName: false
+  AfterFunctionDefinitionName: false
+  AfterIfMacros: false
+  #AfterNot: false
+  AfterOverloadedOperator: false
+  #AfterPlacementOperator: false
+  AfterRequiresInClause: false
+  AfterRequiresInExpression: false
+  BeforeNonEmptyParentheses: false
+UseTab: Never
