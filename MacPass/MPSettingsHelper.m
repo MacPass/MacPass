@@ -71,6 +71,9 @@ NSString *const kMPSettingsKeyGloablAutotypeAlwaysShowCandidateSelection        
 
 NSString *const kMPSettingsKeyTouchIdEnabled                                    = @"EnableSubsequentUnlocksWithTouchID";
 NSString *const kMPSettingsKeyTouchIdEncryptedKeyStore                          = @"TouchIdEncryptedKeyStore";
+NSString *const kMPSettingsKeyTouchIdKeyDateStore                               = @"TouchIdKeyDateStore";
+NSString *const kMPSettingsKeyTouchIdKeyTimeOut                                 = @"TouchIdKeyTimeOut";
+NSString *const kMPSettingsKeyClearTouchIdKeysOnSleep                           = @"ClearTouchIdKeysOnSleep";
 
 NSString *const kMPSettingsKeyEntrySearchFilterContext                          = @"EntrySearchFilterContext";
 
@@ -153,6 +156,9 @@ NSString *const kMPDepricatedSettingsKeyEntryTouchIdDatabaseEncryptedKeyFormat  
       kMPSettingskeyLockOnLogout: @NO,
       kMPSettingskeyLockOnScreenSleep: @NO,
       kMPSettingsKeyIdleLockTimeOut: @0, // Do not lock while idle by default
+      kMPSettingsKeyTouchIdEnabled: @(MPTouchIDKeyStorageDisabled), // Registering this keeps bindings from pushing nil into the key store
+      kMPSettingsKeyTouchIdKeyTimeOut: @0, // Keep stored TouchID keys until they are cleared otherwise
+      kMPSettingsKeyClearTouchIdKeysOnSleep: @NO,
       kMPSettingsKeyLegacyHideNotes: @NO,
       kMPSettingsKeyLegacyHidePassword: @YES,
       kMPSettingsKeyLegacyHideTitle: @NO,

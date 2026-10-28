@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSButton *lockOnSleepCheckButton;
 @property (strong) IBOutlet NSButton *lockOnLogoutCheckButton;
 @property (strong) IBOutlet NSButton *lockOnScreenSleepCheckButton;
+@property (strong) IBOutlet NSPopUpButton *touchIdKeyTimeOutPopup;
+@property (strong) IBOutlet NSButton *clearTouchIdKeysOnSleepCheckButton;
 @property (strong) IBOutlet NSButton *rememberKeyFileCheckButton;
 @property (strong) IBOutlet NSButton *allowScreenshotsCheckButton;
 
