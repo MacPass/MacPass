@@ -32,6 +32,15 @@ If you want to contribute by fixing a bug, adding a feature or improving localiz
 ```bash
 git clone https://github.com/MacPass/MacPass --recursive
 ```
+* Build and run it in one step, without opening Xcode
+```bash
+cd MacPass
+scripts/run.sh
+```
+The script installs Carthage through Homebrew if it is missing, builds the dependencies on the first run and starts an ad hoc signed Debug build. It also works around what current Xcode versions reject in the steps below (the 10.13 deployment target, the iOS schemes of the dependencies).
+
+To do the same by hand:
+
 * Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
 * Install all Dependencies
 ```bash
