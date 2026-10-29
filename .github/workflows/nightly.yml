@@ -22,7 +22,7 @@ jobs:
       - name: Bootstrap Carthage
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: carthage bootstrap --platform macOS
+        run: carthage bootstrap --platform macOS --use-xcframeworks
 
       - name: Install xcpretty
         run: gem install xcpretty --no-document --quiet
