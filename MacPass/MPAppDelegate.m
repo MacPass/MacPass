@@ -26,6 +26,7 @@
 #import "MPConstants.h"
 #import "MPContextMenuHelper.h"
 #import "MPDockTileHelper.h"
+#import "MPStatusItemController.h"
 #import "MPDocument.h"
 #import "MPDocumentController.h"
 #import "MPDocumentWindowController.h"
@@ -62,6 +63,7 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
 @interface MPAppDelegate () {
 @private
   MPDockTileHelper *_dockTileHelper;
+  MPStatusItemController *_statusItemController;
   MPUserNotificationCenterDelegate *_userNotificationCenterDelegate;
   BOOL _shouldOpenFile; // YES if app was started to open a
 }
@@ -225,6 +227,10 @@ typedef NS_OPTIONS(NSInteger, MPAppStartupState) {
   self.startupState |= MPAppStartupStateFinishedLaunch;
   // Here we just opt-in for allowing our bar to be customized throughout the app.
   NSApplication.sharedApplication.automaticCustomizeTouchBarMenuItemEnabled = YES;
+  /* Menu bar status item + optional Dock-icon hide (see General preferences) */
+  if(!_statusItemController) {
+    _statusItemController = [[MPStatusItemController alloc] init];
+  }
 }
 
 #pragma mark -
