@@ -123,6 +123,7 @@
 		4C49CFD624252389004092E7 /* KPKEntry+MPTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C49CFD524252389004092E7 /* KPKEntry+MPTags.m */; };
 		4C4A100F176286FD00BBF2CA /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A100E176286FD00BBF2CA /* MPTableView.m */; };
 		4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */; };
+		C8E5A1032E0F4A0100AE1003 /* MPStatusItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E5A1022E0F4A0100AE1002 /* MPStatusItemController.m */; };
 		4C4B7EE917A45EC6000234C7 /* MPDatePickingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */; };
 		4C4B7EEE17A467E1000234C7 /* MPGroupInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EEC17A467E1000234C7 /* MPGroupInspectorViewController.m */; };
 		4C4B7EF317A467FC000234C7 /* MPEntryInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B7EF117A467FC000234C7 /* MPEntryInspectorViewController.m */; };
@@ -576,6 +577,8 @@
 		4C4B2ED122D8CA6100EB6BFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PluginRepositoryBrowserView.strings; sourceTree = "<group>"; };
 		4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDockTileHelper.h; sourceTree = "<group>"; };
 		4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDockTileHelper.m; sourceTree = "<group>"; };
+		C8E5A1012E0F4A0100AE1001 /* MPStatusItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStatusItemController.h; sourceTree = "<group>"; };
+		C8E5A1022E0F4A0100AE1002 /* MPStatusItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStatusItemController.m; sourceTree = "<group>"; };
 		4C4B7EE617A45EC5000234C7 /* MPDatePickingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDatePickingViewController.h; sourceTree = "<group>"; };
 		4C4B7EE717A45EC5000234C7 /* MPDatePickingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPDatePickingViewController.m; sourceTree = "<group>"; };
 		4C4B7EEB17A467E1000234C7 /* MPGroupInspectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGroupInspectorViewController.h; sourceTree = "<group>"; };
@@ -1357,6 +1360,8 @@
 				4C3B42861F935316007B04FD /* MPDayCountFormatter.m */,
 				4C4B728318E4B9B400A1A5D5 /* MPDockTileHelper.h */,
 				4C4B728418E4B9B400A1A5D5 /* MPDockTileHelper.m */,
+				C8E5A1012E0F4A0100AE1001 /* MPStatusItemController.h */,
+				C8E5A1022E0F4A0100AE1002 /* MPStatusItemController.m */,
 				4CB63A6018986530002DEC4C /* MPFlagsHelper.h */,
 				4C978E0C19AE54AB003067DF /* MPFlagsHelper.m */,
 				4C2E382116D1421B00037A9D /* MPIconHelper.h */,
@@ -2359,6 +2364,7 @@
 				4CD5D705177A5F3300100649 /* MPDatabaseSettingsWindowController.m in Sources */,
 				4C4FCE15177CFE6B00BBF7AE /* MPCustomFieldTableCellView.m in Sources */,
 				4C4B728518E4B9B400A1A5D5 /* MPDockTileHelper.m in Sources */,
+				C8E5A1032E0F4A0100AE1003 /* MPStatusItemController.m in Sources */,
 				4C5FE9AE17843CE20001D5A8 /* MPSelectedAttachmentTableCellView.m in Sources */,
 				4CC59C2721AF0893005E8D6B /* MPPathControl.m in Sources */,
 				4C3666411787327E00B249F1 /* MPDocument+Attachments.m in Sources */,

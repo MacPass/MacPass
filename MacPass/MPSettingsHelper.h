@@ -106,6 +106,8 @@ APPKIT_EXTERN NSString *const kMPSettingsKeyFaviconDownloadMethod;
 /* UI */
 APPKIT_EXTERN NSString *const kMPSettingsKeyUseUnifiedToolbar;
 APPKIT_EXTERN NSString *const kMPSettingsKeyAllowScreenshots;
+APPKIT_EXTERN NSString *const kMPSettingsKeyShowStatusItem;                 // If set to YES MacPass shows a menu bar status item
+APPKIT_EXTERN NSString *const kMPSettingsKeyHideDockIcon;                   // If set to YES MacPass will not show an icon in the Dock (status item is forced on)
 
 typedef NS_ENUM(NSUInteger, MPFileChangeStrategy) {
   MPFileChangeStrategyAsk,

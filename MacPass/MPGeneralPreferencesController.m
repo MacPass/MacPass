@@ -47,6 +47,8 @@
 
   [self.reopenLastDatabase bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyReopenLastDatabaseOnLaunch] options:nil];
   [self.enableAutosaveCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyEnableAutosave] options:nil];
+  [self.showStatusItemCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyShowStatusItem] options:nil];
+  [self.hideDockIconCheckButton bind:NSValueBinding toObject:defaultsController withKeyPath:[MPSettingsHelper defaultControllerPathForKey:kMPSettingsKeyHideDockIcon] options:nil];
 
   /* Favicon download method menu */
   NSDictionary *faviconDownloadMethodDict = @{ @(MPFaviconDownloadMethodDirect) : NSLocalizedString(@"FAVICON_DOWNLOAD_METHOD_DIRECT", @"Favicon download method: directly download from the host"),

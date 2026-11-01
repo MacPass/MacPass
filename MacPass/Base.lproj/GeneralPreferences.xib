@@ -11,17 +11,19 @@
                 <outlet property="enableAutosaveCheckButton" destination="lz3-4U-UMI" id="L5y-58-IgH"/>
                 <outlet property="faviconDownloadMethodPopup" destination="OfU-6f-oTU" id="OfU-6f-oTU-outlet"/>
                 <outlet property="fileChangeStrategyPopup" destination="wIu-Sh-2a2" id="oJo-dA-lEE"/>
+                <outlet property="hideDockIconCheckButton" destination="Dk3-cb-hdi" id="Dk3-cb-out"/>
                 <outlet property="reopenLastDatabase" destination="530" id="878"/>
+                <outlet property="showStatusItemCheckButton" destination="Si3-cb-ssi" id="Si3-cb-out"/>
                 <outlet property="view" destination="1" id="82"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="406" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="406" height="412"/>
             <subviews>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="File Handling" translatesAutoresizingMaskIntoConstraints="NO" id="888">
-                    <rect key="frame" x="17" y="146" width="372" height="134"/>
+                    <rect key="frame" x="17" y="258" width="372" height="134"/>
                     <view key="contentView" id="cpg-tt-SHE">
                         <rect key="frame" x="4" y="5" width="364" height="114"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,6 +88,51 @@
                         <constraint firstItem="530" firstAttribute="top" secondItem="888" secondAttribute="top" constant="25" id="w7t-Jm-kXg"/>
                     </constraints>
                 </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Appearance" translatesAutoresizingMaskIntoConstraints="NO" id="Dk1-bx-app">
+                    <rect key="frame" x="17" y="150" width="372" height="100"/>
+                    <view key="contentView" id="Dk2-cv-app">
+                        <rect key="frame" x="4" y="5" width="364" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Si3-cb-ssi">
+                                <rect key="frame" x="14" y="54" width="149" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show menu bar icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Si4-cc-ssi">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dk3-cb-hdi">
+                                <rect key="frame" x="14" y="32" width="115" height="18"/>
+                                <buttonCell key="cell" type="check" title="Hide Dock icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Dk4-cc-hdi">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Dk5-tf-hdi">
+                                <rect key="frame" x="18" y="8" width="328" height="28"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="While the Dock icon is hidden, MacPass stays reachable via the menu bar icon and does not appear in the Dock or application switcher." id="Dk6-tc-hdi">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Si3-cb-ssi" firstAttribute="leading" secondItem="Dk2-cv-app" secondAttribute="leading" constant="16" id="Si1-ld-ssi"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Si3-cb-ssi" secondAttribute="trailing" constant="20" symbolic="YES" id="Si2-tr-ssi"/>
+                            <constraint firstItem="Dk3-cb-hdi" firstAttribute="leading" secondItem="Dk2-cv-app" secondAttribute="leading" constant="16" id="Dc1-ld-hdi"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dk3-cb-hdi" secondAttribute="trailing" constant="20" symbolic="YES" id="Dc2-tr-hdi"/>
+                            <constraint firstItem="Dk3-cb-hdi" firstAttribute="top" secondItem="Si3-cb-ssi" secondAttribute="bottom" constant="6" symbolic="YES" id="Dc0-tp-hdi"/>
+                            <constraint firstItem="Dk5-tf-hdi" firstAttribute="leading" secondItem="Dk2-cv-app" secondAttribute="leading" constant="20" symbolic="YES" id="Dc3-ld-hdi"/>
+                            <constraint firstAttribute="trailing" secondItem="Dk5-tf-hdi" secondAttribute="trailing" constant="20" symbolic="YES" id="Dc4-tr-hdi"/>
+                            <constraint firstItem="Dk5-tf-hdi" firstAttribute="top" secondItem="Dk3-cb-hdi" secondAttribute="bottom" constant="8" symbolic="YES" id="Dc5-tp-hdi"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="Si3-cb-ssi" firstAttribute="top" secondItem="Dk1-bx-app" secondAttribute="top" constant="25" id="Si6-tp-ssi"/>
+                        <constraint firstAttribute="bottom" secondItem="Dk5-tf-hdi" secondAttribute="bottom" constant="12" id="Dc7-bt-hdi"/>
+                    </constraints>
+                </box>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="500" borderType="line" title="Network" translatesAutoresizingMaskIntoConstraints="NO" id="wD1-ag-7V5">
                     <rect key="frame" x="17" y="16" width="372" height="126"/>
                     <view key="contentView" id="bQD-ZX-d0i">
@@ -145,7 +192,10 @@
                 <constraint firstItem="wD1-ag-7V5" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" constant="-20" id="EeW-K0-jec"/>
                 <constraint firstItem="888" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="ZMP-Lv-rQh"/>
                 <constraint firstAttribute="trailing" secondItem="wD1-ag-7V5" secondAttribute="trailing" constant="20" id="ccK-FL-7Wx"/>
-                <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="kgx-BG-wVT"/>
+                <constraint firstItem="Dk1-bx-app" firstAttribute="top" secondItem="888" secondAttribute="bottom" constant="8" symbolic="YES" id="Dc8-tp-box"/>
+                <constraint firstItem="Dk1-bx-app" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="Dc9-ld-box"/>
+                <constraint firstAttribute="trailing" secondItem="Dk1-bx-app" secondAttribute="trailing" constant="20" id="DcA-tr-box"/>
+                <constraint firstItem="wD1-ag-7V5" firstAttribute="top" secondItem="Dk1-bx-app" secondAttribute="bottom" constant="8" symbolic="YES" id="kgx-BG-wVT"/>
             </constraints>
             <point key="canvasLocation" x="-508" y="-372"/>
         </customView>
